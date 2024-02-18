@@ -1,0 +1,150 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    /* So 100% means 100% */
+    box-sizing: border-box;
+  }
+body {
+    background-color: rgb(226 232 240);
+}
+
+.App {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(134, 157, 173, 0.764);
+}
+
+.navbar a {
+    font-weight: 500;
+    color:white;
+    font-size: larger;
+    padding: 10px;
+}
+.container {
+    height: 30rem;
+}
+
+.outcomeContainer, .incomeContainer {
+    background-color: rgba(255, 255, 255, 0.573);
+    width: 300px;
+    border-radius: 5px;
+    border-color: black;
+    margin: 3px;
+    padding: 4px;
+    cursor: pointer;
+}
+
+.outcomeContainerPage, .incomeContainerPage {
+    background-color: rgba(255, 255, 255, 0.573);
+    width: 300px;
+    border-radius: 5px;
+    border-color: black;
+    padding: 4px;
+}
+
+.outcome, .income {
+    display: flex;
+    flex-direction: row;
+}
+
+.titleContainer {
+    display: flex;
+    padding-left: 10px;
+    flex-direction: column;
+}
+
+.outcomeTitle, .incomeTitle {
+    font-weight: bold;
+}
+
+
+.outcomeValue, .incomeValue{
+    text-align: right;
+    padding-right: 10px;
+    align-self: end;
+}
+
+.addOutcome {
+    background-color: rgba(11, 143, 160, 0.808);
+    padding-bottom: 1px;
+    color: white;
+}
+
+.createOutcomeContainer, .createIncomeContainer{
+    width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: auto;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.573);
+}
+
+.formContainer label {
+    color:rgba(50, 50, 50, 0.727);
+}
+
+.formContainer #inputCreateOutcome, #inputCreateIncome {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 10px;
+    color:rgba(50, 50, 50, 0.727);
+    font-weight: 500;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.formContainer span {
+    color: rgb(216, 23, 23);
+    font-style: italic;
+    font-size: smaller;
+    margin-left: 15px;
+}
+
+.authContainer {
+    width: 100vw;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+}
+
+.formContainer #inputUsername, #inputPassword {
+    margin-right: 15px;
+    margin-left: 15px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 10px;
+    color:rgba(50, 50, 50, 0.727);
+    font-weight: 500;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.formContainer .authLabel {
+    margin-left: 15px;
+    color:rgba(50, 50, 50, 0.727);
+}
