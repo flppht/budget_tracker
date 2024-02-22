@@ -5,36 +5,36 @@ import * as Yup from "yup";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 
-const CreateOutcome = () => {
+const CreateExpense = () => {
   const navigate = useNavigate();
   const initialValues = {
-    outcomeTitle: "",
-    outcomeValue: null,
-    outcomeLocation: "",
+    expenseTitle: "",
+    expenseValue: null,
+    expenseLocation: "",
   };
 
   const onSubmit = (data) => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/outcomes`, data, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/expenses`, data, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
       })
       .then((response) => {
-        navigate("/outcomes");
+        navigate("/expenses");
       });
   };
 
   const validationSchema = Yup.object().shape({
-    outcomeTitle: Yup.string().required("You must input a title"),
-    outcomeValue: Yup.number("You can use only positive numbers and '.'")
+    expenseTitle: Yup.string().required("You must input a title"),
+    expenseValue: Yup.number("You can use only positive numbers and '.'")
       .positive("You must input a number larger than 0")
       .required("You must input a value"),
-    outcomeLocation: Yup.string().min(3).max(25),
+    expenseLocation: Yup.string().min(3).max(25),
   });
 
   return (
-    <div className="createOutcomeContainer">
+    <div className="createExpenseContainer">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
@@ -42,29 +42,29 @@ const CreateOutcome = () => {
       >
         <Form className="formContainer shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
           <label>Title:</label>
-          <ErrorMessage name="outcomeTitle" component="span" />
+          <ErrorMessage name="expenseTitle" component="span" />
           <Field
-            id="inputCreateOutcome"
-            name="outcomeTitle"
+            id="inputCreateExpense"
+            name="expenseTitle"
             placeholder="Ex. Shopping..."
           />
           <label>Value:</label>
-          <ErrorMessage name="outcomeValue" component="span" />
+          <ErrorMessage name="expenseValue" component="span" />
           <Field
-            id="inputCreateOutcome"
-            name="outcomeValue"
+            id="inputCreateExpense"
+            name="expenseValue"
             placeholder="Ex. 149.99..."
           />
           <label>Location:</label>
-          <ErrorMessage name="outcomeLocation" component="span" />
+          <ErrorMessage name="expenseLocation" component="span" />
           <Field
-            id="inputCreateOutcome"
-            name="outcomeLocation"
+            id="inputCreateExpense"
+            name="expenseLocation"
             placeholder="Ex. Springfield..."
           />
 
           <Button type="submit" className="bg-cyan-500 shadow-cyan-500/50 mt-5">
-            Create outcome
+            Create expense
           </Button>
         </Form>
       </Formik>
@@ -72,4 +72,4 @@ const CreateOutcome = () => {
   );
 };
 
-export default CreateOutcome;
+export default CreateExpense;

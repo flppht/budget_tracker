@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-  const Incomes = sequelize.define("Incomes", {
-    incomeTitle: {
+  const Expenses = sequelize.define("Expenses", {
+    expenseTitle: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    incomeValue: {
+    expenseValue: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    incomeLocation: {
+    expenseLocation: {
       type: DataTypes.STRING,
       allowNull: true,
     },
@@ -18,5 +18,5 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
-  return Incomes;
+  return Expenses;
 };

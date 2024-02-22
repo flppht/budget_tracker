@@ -29,9 +29,13 @@ const Auth = () => {
           alert(response.data.error);
         } else {
           if (login) {
-            localStorage.setItem("accessToken", response.data);
-            setLoggedIn(true);
-            navigate("/");
+            localStorage.setItem("accessToken", response.data.accessToken);
+            setLoggedIn({
+              username: response.data.username,
+              id: response.data.id,
+              status: true,
+            });
+            navigate("/total");
           }
         }
       });
@@ -56,36 +60,38 @@ const Auth = () => {
         validationSchema={validationSchema}
       >
         <Form className="formContainer shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
-          <label className="authLabel">Username:</label>
           <ErrorMessage name="username" component="span" />
-          <Field id="inputUsername" name="username" />
-          <label className="authLabel">Password:</label>
+          <Field id="inputUsername" name="username" placeholder="Username" />
           <ErrorMessage name="password" component="span" />
           <Field
             id="inputPassword"
             name="password"
             type="password"
             autoComplete="off"
+            placeholder="Password"
           />
 
-          <Button type="submit" className="bg-cyan-500 shadow-cyan-500/50 mt-5">
+          <Button
+            type="submit"
+            className="bg-cyan-500 shadow-cyan-500/50 mt-5 mb-5"
+          >
             {login ? "Sign in" : "Sign up"}
           </Button>
-          <div className="mt-4">
+          <div className="flex flex-row items-center justify-center space-x-3">
             <hr />
-            <div className="text-center mt-2">or</div>
-            <div
-              onClick={() => setLogin(!login)}
-              className="w-full text-center mb-2"
-            >
-              <Button
-                type="button"
-                className="bg-gray-400 shadow-gray-500/50 mt-2"
-              >
-                {login ? "Sign up" : "Sign in"}
-              </Button>
-            </div>
+            <label className="text-center text-gray-600 text-xs font-semibold">
+              {" "}
+              OR{" "}
+            </label>
+            <hr />
           </div>
+          <Button
+            type="button"
+            className="bg-gray-400 shadow-gray-500/50 mt-3 mb-2"
+            onClick={() => setLogin(!login)}
+          >
+            {login ? "Sign up" : "Sign in"}
+          </Button>
         </Form>
       </Formik>
     </div>

@@ -29,7 +29,7 @@ router.post("/login", async (req, res) => {
           process.env.JWT_SECRET
         );
 
-        res.json(accessToken);
+        res.json({ accessToken, username, id: user.id });
       }
     });
   }

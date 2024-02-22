@@ -16,13 +16,13 @@ const CreateIncome = () => {
 
   const onSubmit = (data) => {
     axios
-      .post(`${process.env.REACT_APP_SERVER_URL}/incomes`, data, {
+      .post(`${process.env.REACT_APP_SERVER_URL}/income`, data, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
       })
       .then((response) => {
-        navigate("/incomes");
+        navigate("/income");
       });
   };
 

@@ -1,19 +1,24 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
-import CreateOutcome from "./components/CreateOutcome";
-import OutcomePage from "./components/OutcomePage";
-import Outcomes from "./components/Outcomes";
-import Incomes from "./components/Incomes";
+import CreateExpense from "./components/CreateExpense";
+import ExpensePage from "./components/ExpensePage";
+import TotalAmount from "./components/TotalAmout";
+import Expenses from "./components/Expenses";
+import Income from "./components/Income";
 import CreateIncome from "./components/CreateIncome";
 import IncomePage from "./components/IncomePage";
-import Auth from "./components/Auth";
 import { useEffect, useState } from "react";
 import { AuthContext } from "./utility/AuthContext";
 import axios from "axios";
+import NavBar from "./components/NavBar";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
 
   useEffect(() => {
     axios
@@ -22,9 +27,13 @@ const App = () => {
       })
       .then((response) => {
         if (response.data.error) {
-          setLoggedIn(false);
+          setLoggedIn({ ...loggedIn, status: false });
         } else {
-          setLoggedIn(true);
+          setLoggedIn({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
         }
       });
   }, []);
@@ -34,26 +43,19 @@ const App = () => {
       <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
         <Router>
           <div className="navbar">
-            {loggedIn && (
-              <>
-                <Link to="/">Wallet</Link>
-                <Link to="/outcomes">Outcomes</Link>
-                <Link to="/incomes">Incomes</Link>
-              </>
-            )}
-            {!loggedIn && <Link to="/auth">Sign in</Link>}
+            {loggedIn.status && <NavBar username={loggedIn.username} />}
           </div>
           <Routes>
-            {!loggedIn && <Route path="/auth" element={<Auth />} />}
-            {loggedIn && (
+            {!loggedIn.status && <Route path="/" element={<Home />} />}
+            {loggedIn.status && (
               <>
-                <Route path="/" element={<Home />} />
-                <Route path="/outcomes" element={<Outcomes />} />
-                <Route path="/incomes" element={<Incomes />} />
-                <Route path="/createoutcome" element={<CreateOutcome />} />
+                <Route path="/total" element={<TotalAmount />} />
+                <Route path="/expenses" element={<Expenses />} />
+                <Route path="/income" element={<Income />} />
+                <Route path="/createexpense" element={<CreateExpense />} />
                 <Route path="/createincome" element={<CreateIncome />} />
-                <Route path="/outcomes/:id" element={<OutcomePage />} />
-                <Route path="/incomes/:id" element={<IncomePage />} />{" "}
+                <Route path="/expenses/:id" element={<ExpensePage />} />
+                <Route path="/income/:id" element={<IncomePage />} />
               </>
             )}
           </Routes>
