@@ -7,8 +7,14 @@ const Button = (props) => {
     props.className
   );
 
+  const handleClick = () => {
+    if (props.onClick) {
+      props.onClick();
+    }
+  };
+
   return (
-    <button type={props.type} className={classString}>
+    <button type={props.type} className={classString} onClick={handleClick}>
       {props.children}
     </button>
   );

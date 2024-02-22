@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { Incomes } = require("../models");
+const { Expenses } = require("../models");
 const { Op } = require("sequelize");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
 router.get("/", validateToken, async (req, res) => {
-  let listOfIncomes;
+  let listOfExpenses;
   const username = req.user.username;
   const { month, year } = req.query;
 
@@ -13,7 +13,7 @@ router.get("/", validateToken, async (req, res) => {
     let startDate = new Date(year, month, 1, 0, 0, 0);
     let endDate = new Date(year, month + 1, 0, 23, 59, 59);
 
-    listOfIncomes = await Incomes.findAll({
+    listOfExpenses = await Expenses.findAll({
       where: {
         createdAt: { [Op.between]: [startDate, endDate] },
         username: username,
@@ -23,31 +23,41 @@ router.get("/", validateToken, async (req, res) => {
     let startDate = new Date(year, 0, 1, 0, 0, 0);
     let endDate = new Date(year, 12, 0, 23, 59, 59);
 
-    listOfIncomes = await Incomes.findAll({
+    listOfExpenses = await Expenses.findAll({
       where: {
         createdAt: { [Op.between]: [startDate, endDate] },
         username: username,
       },
     });
   } else {
-    listOfIncomes = await Incomes.findAll({ where: { username: username } });
+    listOfExpenses = await Expenses.findAll({ where: { username: username } });
   }
-  res.json(listOfIncomes);
+
+  res.json(listOfExpenses);
 });
 
 router.get("/byId/:id", async (req, res) => {
   const id = req.params.id;
-  const income = await Incomes.findByPk(id);
+  const expense = await Expenses.findByPk(id);
 
-  res.json(income);
+  res.json(expense);
 });
 
 router.post("/", validateToken, async (req, res) => {
-  const income = req.body;
-  income.username = req.user.username;
-  await Incomes.create(income);
+  const expense = req.body;
+  const username = req.user.username;
+  expense.username = username;
+  await Expenses.create(expense);
 
-  res.json(income);
+  res.json(expense);
+});
+
+router.delete("/:expenseId", async (req, res) => {
+  const expenseId = req.params.expenseId;
+
+  await Expenses.destroy({ where: { id: expenseId } });
+
+  res.json("expense deleted");
 });
 
 module.exports = router;

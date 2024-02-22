@@ -1,20 +1,29 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import dateExtractor from "../utility/DateExtractor";
 import Button from "./Button";
 
 const IncomePage = () => {
   const [income, setIncome] = useState({});
   let { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/incomes/byId/${id}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/income/byId/${id}`)
       .then((response) => {
         setIncome(response.data);
       });
   }, []);
+
+  const handleDelete = () => {
+    axios
+      .delete(`${process.env.REACT_APP_SERVER_URL}/income/${id}`)
+      .then(() => {
+        navigate("/income");
+      });
+  };
 
   return (
     <div className="incomeContainerPage shadow-md mt-16">
@@ -39,7 +48,11 @@ const IncomePage = () => {
         <Button type="button" className="bg-cyan-500 shadow-cyan-600/50">
           Update
         </Button>
-        <Button type="button" className="bg-red-500 shadow-red-600/50">
+        <Button
+          type="button"
+          className="bg-red-500 shadow-red-600/50"
+          onClick={handleDelete}
+        >
           Delete
         </Button>
       </div>

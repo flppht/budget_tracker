@@ -8,8 +8,8 @@ import sortData from "../utility/SortData";
 import calculateTotalAmount from "../utility/CalculateTotalAmount";
 import Select from "./Select";
 
-const Income = () => {
-  const [listOfIncomes, setListOfIncomes] = useState([]);
+const Expense = () => {
+  const [listOfExpenses, setListOfExpenses] = useState([]);
   const [sort, setSort] = useState(false);
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
@@ -22,12 +22,12 @@ const Income = () => {
     };
 
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/incomes`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/expenses`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
         params: properties,
       })
       .then((response) => {
-        setListOfIncomes(
+        setListOfExpenses(
           response.data.sort(
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           )
@@ -48,41 +48,41 @@ const Income = () => {
         </div>
         <div className="grid grid-cols-3 w-72">
           <label className="text-lg mb-2 font-semibold justify-self-start col-span-2">
-            Incomes: {calculateTotalAmount(listOfIncomes)} KM
+            Expenses: {calculateTotalAmount(listOfExpenses)} KM
           </label>
-          <div className="addIncome justify-self-end font-bold">
+          <div className="justify-self-end font-bold">
             <ImportExportIcon
               onClick={() =>
-                setListOfIncomes(sortData(listOfIncomes, sort, setSort))
+                setListOfExpenses(sortData(listOfExpenses, sort, setSort))
               }
               className="mr-1 text-cyan-600/80 cursor-pointer"
             />
-            <Link to="/createincome">
+            <Link to="/createexpense">
               <AddCircleOutlineIcon className="rounded-full text-cyan-600/80" />
             </Link>
           </div>
         </div>
         <div className="container flex flex-col overflow-auto">
-          {listOfIncomes.map((income, key) => {
+          {listOfExpenses.map((expense, key) => {
             return (
-              <div className="incomeContainer shadow-md" key={key}>
+              <div className="expenseContainer shadow-md" key={key}>
                 <div
-                  className="income flex justify-center"
-                  onClick={() => navigate(`/incomes/${income.id}`)}
+                  className="expense flex justify-center"
+                  onClick={() => navigate(`/expenses/${expense.id}`)}
                 >
                   <div className="titleContainer w-3/5">
-                    <div className="incomeDate text-sm font-normal text-gray-500">
-                      {dateExtractor(new Date(income.createdAt))}
+                    <div className="expenseDate text-sm font-normal text-gray-500">
+                      {dateExtractor(new Date(expense.createdAt))}
                     </div>
                     <div className="font-mono mt-1 font-semibold">
-                      {income.incomeTitle}
+                      {expense.expenseTitle}
                     </div>
-                    <div className="incomeLocation text-sm font-normal text-gray-500 italic">
-                      {income.incomeLocation}
+                    <div className="expenseLocation text-sm font-normal text-gray-500 italic">
+                      {expense.expenseLocation}
                     </div>
                   </div>
-                  <div className="incomeValue w-2/5 font-semibold align-bottom text-green-700">
-                    +{income.incomeValue} KM
+                  <div className="expenseValue w-2/5 font-semibold align-bottom text-red-700">
+                    -{expense.expenseValue} KM
                   </div>
                 </div>
               </div>
@@ -94,4 +94,4 @@ const Income = () => {
   );
 };
 
-export default Income;
+export default Expense;

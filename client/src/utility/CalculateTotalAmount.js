@@ -1,7 +1,7 @@
 const CalculateTotalAmount = (array) => {
   let amount = 0;
   array.forEach((element) => {
-    amount += -element.outcomeValue || element.incomeValue;
+    amount += -element.expenseValue || element.incomeValue;
   });
 
   return amount.toFixed(2);

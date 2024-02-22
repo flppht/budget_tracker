@@ -10,11 +10,11 @@ app.use(express.json());
 app.use(cors());
 
 //routers
-const outcomesRouter = require("./routes/Outcomes");
-app.use("/outcomes", outcomesRouter);
+const expensesRouter = require("./routes/Expenses");
+app.use("/expenses", expensesRouter);
 
-const incomesRouter = require("./routes/Incomes");
-app.use("/incomes", incomesRouter);
+const incomeRouter = require("./routes/Income");
+app.use("/income", incomeRouter);
 
 const usersRouter = require("./routes/Users");
 app.use("/auth", usersRouter);

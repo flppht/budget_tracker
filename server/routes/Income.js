@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const { Outcomes } = require("../models");
+const { Income } = require("../models");
 const { Op } = require("sequelize");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
 router.get("/", validateToken, async (req, res) => {
-  let listOfOutcomes;
+  let listOfIncome;
   const username = req.user.username;
   const { month, year } = req.query;
 
@@ -13,7 +13,7 @@ router.get("/", validateToken, async (req, res) => {
     let startDate = new Date(year, month, 1, 0, 0, 0);
     let endDate = new Date(year, month + 1, 0, 23, 59, 59);
 
-    listOfOutcomes = await Outcomes.findAll({
+    listOfIncome = await Income.findAll({
       where: {
         createdAt: { [Op.between]: [startDate, endDate] },
         username: username,
@@ -23,34 +23,39 @@ router.get("/", validateToken, async (req, res) => {
     let startDate = new Date(year, 0, 1, 0, 0, 0);
     let endDate = new Date(year, 12, 0, 23, 59, 59);
 
-    listOfOutcomes = await Outcomes.findAll({
+    listOfIncome = await Income.findAll({
       where: {
         createdAt: { [Op.between]: [startDate, endDate] },
         username: username,
       },
     });
   } else {
-    listOfOutcomes = await Outcomes.findAll({ where: { username: username } });
+    listOfIncome = await Income.findAll({ where: { username: username } });
   }
-
-  res.json(listOfOutcomes);
+  res.json(listOfIncome);
 });
 
-router.get("/byId/:id", validateToken, async (req, res) => {
+router.get("/byId/:id", async (req, res) => {
   const id = req.params.id;
-  const username = req.user.username;
-  const outcome = await Outcomes.findByPk(id);
+  const income = await Income.findByPk(id);
 
-  res.json(outcome);
+  res.json(income);
 });
 
 router.post("/", validateToken, async (req, res) => {
-  const outcome = req.body;
-  const username = req.user.username;
-  outcome.username = username;
-  await Outcomes.create(outcome);
+  const income = req.body;
+  income.username = req.user.username;
+  await Income.create(income);
 
-  res.json(outcome);
+  res.json(income);
+});
+
+router.delete("/:incomeId", async (req, res) => {
+  const incomeId = req.params.incomeId;
+
+  await Income.destroy({ where: { id: incomeId } });
+
+  res.json("income deleted");
 });
 
 module.exports = router;

@@ -22,21 +22,21 @@ const TotalAmount = () => {
           year,
         };
 
-        const outcomes = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/outcomes`,
+        const expenses = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/expenses`,
           {
             headers: { accessToken: localStorage.getItem("accessToken") },
             params: properties,
           }
         );
-        const incomes = await axios.get(
-          `${process.env.REACT_APP_SERVER_URL}/incomes`,
+        const income = await axios.get(
+          `${process.env.REACT_APP_SERVER_URL}/income`,
           {
             headers: { accessToken: localStorage.getItem("accessToken") },
             params: properties,
           }
         );
-        const combined = [...outcomes.data, ...incomes.data];
+        const combined = [...expenses.data, ...income.data];
 
         setTotalAmount(
           combined.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -50,7 +50,7 @@ const TotalAmount = () => {
   }, [month, year]);
 
   return (
-    <>
+    <div>
       <div className="flex flex-col items-center mt-2 h-auto">
         <div className=" mb-4">
           <Select
@@ -78,37 +78,37 @@ const TotalAmount = () => {
       <div className="container flex flex-col overflow-auto">
         {totalAmount.map((resource, key) => {
           return (
-            <div className="outcomeContainer shadow-md" key={key}>
+            <div className="expenseContainer shadow-md" key={key}>
               <div
-                className="outcome flex justify-center"
+                className="expense flex justify-center"
                 onClick={() =>
                   navigate(
-                    `/${resource.outcomeTitle ? "outcomes" : "incomes"}/${
+                    `/${resource.expenseTitle ? "expenses" : "income"}/${
                       resource.id
                     }`
                   )
                 }
               >
                 <div className="titleContainer w-3/5">
-                  <div className="outcomeDate text-sm font-normal text-gray-500">
+                  <div className="expenseDate text-sm font-normal text-gray-500">
                     {dateExtractor(new Date(resource.createdAt))}
                   </div>
                   <div className="font-mono mt-1 font-semibold">
-                    {resource.outcomeTitle || resource.incomeTitle}
+                    {resource.expenseTitle || resource.incomeTitle}
                   </div>
-                  <div className="outcomeLocation text-sm font-normal text-gray-500 italic">
-                    {resource.outcomeLocation || resource.incomeLocation}
+                  <div className="expenseLocation text-sm font-normal text-gray-500 italic">
+                    {resource.expenseLocation || resource.incomeLocation}
                   </div>
                 </div>
-                {resource.outcomeValue ? (
+                {resource.expenseValue ? (
                   <div
-                    className={`outcomeValue w-2/5 font-semibold align-bottom text-red-700`}
+                    className={`expenseValue w-2/5 font-semibold align-bottom text-red-700`}
                   >
-                    -{resource.outcomeValue} KM
+                    -{resource.expenseValue} KM
                   </div>
                 ) : (
                   <div
-                    className={`outcomeValue w-2/5 font-semibold align-bottom text-green-700`}
+                    className={`expenseValue w-2/5 font-semibold align-bottom text-green-700`}
                   >
                     +{resource.incomeValue} KM
                   </div>
@@ -118,7 +118,7 @@ const TotalAmount = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };
 

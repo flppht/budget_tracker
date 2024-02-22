@@ -36,7 +36,7 @@ body {
     height: 30rem;
 }
 
-.outcomeContainer, .incomeContainer {
+.expenseContainer, .incomeContainer {
     background-color: rgba(255, 255, 255, 0.573);
     width: 300px;
     border-radius: 5px;
@@ -46,7 +46,7 @@ body {
     cursor: pointer;
 }
 
-.outcomeContainerPage, .incomeContainerPage {
+.expenseContainerPage, .incomeContainerPage {
     background-color: rgba(255, 255, 255, 0.573);
     width: 300px;
     border-radius: 5px;
@@ -54,7 +54,7 @@ body {
     padding: 4px;
 }
 
-.outcome, .income {
+.expense, .income {
     display: flex;
     flex-direction: row;
 }
@@ -65,24 +65,24 @@ body {
     flex-direction: column;
 }
 
-.outcomeTitle, .incomeTitle {
+.expenseTitle, .incomeTitle {
     font-weight: bold;
 }
 
 
-.outcomeValue, .incomeValue{
+.expenseValue, .incomeValue{
     text-align: right;
     padding-right: 10px;
     align-self: end;
 }
 
-.addOutcome {
+.addExpense {
     background-color: rgba(11, 143, 160, 0.808);
     padding-bottom: 1px;
     color: white;
 }
 
-.createOutcomeContainer, .createIncomeContainer{
+.createExpenseContainer, .createIncomeContainer{
     width: 100vw;
     margin-top: 50px;
     display: flex;
@@ -95,40 +95,20 @@ body {
     flex-direction: column;
     width: 500px;
     height: auto;
-    border-radius: 5px;
+    border-radius: 10px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.573);
 }
 
-.formContainer label {
-    color:rgba(50, 50, 50, 0.727);
-}
-
-.formContainer #inputCreateOutcome, #inputCreateIncome {
+.formContainer #inputCreateExpense, #inputCreateIncome {
     height: 40px;
     margin-top: 5px;
     margin-bottom: 10px;
     border-radius: 5px;
     padding-left: 10px;
     color:rgba(50, 50, 50, 0.727);
-    font-weight: 500;
+    font-weight: 100;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
-
-.formContainer span {
-    color: rgb(216, 23, 23);
-    font-style: italic;
-    font-size: smaller;
-    margin-left: 15px;
-}
-
-.authContainer {
-    width: 100vw;
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
 }
 
 .formContainer #inputUsername, #inputPassword {
@@ -139,12 +119,43 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     padding-left: 10px;
-    color:rgba(50, 50, 50, 0.727);
-    font-weight: 500;
+    color:rgb(33, 33, 33);
+    font-weight: 400;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-.formContainer .authLabel {
+.formContainer #inputUsername:focus, #inputPassword:focus, #inputCreateExpense:focus, #inputCreateIncome:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(134, 157, 173, 0.764);
+}
+
+
+.formContainer span {
+    color: rgb(216, 23, 23);
+    font-style: italic;
+    font-size: smaller;
     margin-left: 15px;
-    color:rgba(50, 50, 50, 0.727);
+}
+
+.authContainer {
+    display: flex;
+}
+
+.welcomePage {
+    display: flex;
+    flex-direction: column;
+    padding-right: 30px;
+    margin-top: 20px;
+    width: 500px;
+}
+
+hr {
+    width: 40%;
+}
+
+.profileButton {
+    font-weight: 500;
+    color: white;
+    font-size: larger;
+    padding: 10px;
 }

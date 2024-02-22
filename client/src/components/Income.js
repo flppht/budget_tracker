@@ -8,8 +8,8 @@ import sortData from "../utility/SortData";
 import calculateTotalAmount from "../utility/CalculateTotalAmount";
 import Select from "./Select";
 
-const Outcome = () => {
-  const [listOfOutcomes, setListOfOutcomes] = useState([]);
+const Income = () => {
+  const [listOfIncome, setListOfIncome] = useState([]);
   const [sort, setSort] = useState(false);
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
@@ -22,12 +22,12 @@ const Outcome = () => {
     };
 
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/outcomes`, {
+      .get(`${process.env.REACT_APP_SERVER_URL}/income`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
         params: properties,
       })
       .then((response) => {
-        setListOfOutcomes(
+        setListOfIncome(
           response.data.sort(
             (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
           )
@@ -48,41 +48,41 @@ const Outcome = () => {
         </div>
         <div className="grid grid-cols-3 w-72">
           <label className="text-lg mb-2 font-semibold justify-self-start col-span-2">
-            Outcomes: {calculateTotalAmount(listOfOutcomes)} KM
+            Income: {calculateTotalAmount(listOfIncome)} KM
           </label>
-          <div className="justify-self-end font-bold">
+          <div className="addIncome justify-self-end font-bold">
             <ImportExportIcon
               onClick={() =>
-                setListOfOutcomes(sortData(listOfOutcomes, sort, setSort))
+                setListOfIncome(sortData(listOfIncome, sort, setSort))
               }
               className="mr-1 text-cyan-600/80 cursor-pointer"
             />
-            <Link to="/createoutcome">
+            <Link to="/createincome">
               <AddCircleOutlineIcon className="rounded-full text-cyan-600/80" />
             </Link>
           </div>
         </div>
         <div className="container flex flex-col overflow-auto">
-          {listOfOutcomes.map((outcome, key) => {
+          {listOfIncome.map((income, key) => {
             return (
-              <div className="outcomeContainer shadow-md" key={key}>
+              <div className="incomeContainer shadow-md" key={key}>
                 <div
-                  className="outcome flex justify-center"
-                  onClick={() => navigate(`/outcomes/${outcome.id}`)}
+                  className="income flex justify-center"
+                  onClick={() => navigate(`/income/${income.id}`)}
                 >
                   <div className="titleContainer w-3/5">
-                    <div className="outcomeDate text-sm font-normal text-gray-500">
-                      {dateExtractor(new Date(outcome.createdAt))}
+                    <div className="incomeDate text-sm font-normal text-gray-500">
+                      {dateExtractor(new Date(income.createdAt))}
                     </div>
                     <div className="font-mono mt-1 font-semibold">
-                      {outcome.outcomeTitle}
+                      {income.incomeTitle}
                     </div>
-                    <div className="outcomeLocation text-sm font-normal text-gray-500 italic">
-                      {outcome.outcomeLocation}
+                    <div className="incomeLocation text-sm font-normal text-gray-500 italic">
+                      {income.incomeLocation}
                     </div>
                   </div>
-                  <div className="outcomeValue w-2/5 font-semibold align-bottom text-red-700">
-                    -{outcome.outcomeValue} KM
+                  <div className="incomeValue w-2/5 font-semibold align-bottom text-green-700">
+                    +{income.incomeValue} KM
                   </div>
                 </div>
               </div>
@@ -94,4 +94,4 @@ const Outcome = () => {
   );
 };
 
-export default Outcome;
+export default Income;
