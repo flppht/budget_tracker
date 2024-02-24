@@ -47,6 +47,7 @@ router.post("/", validateToken, async (req, res) => {
   const expense = req.body;
   const username = req.user.username;
   expense.username = username;
+  expense.type = "expense";
   await Expenses.create(expense);
 
   res.json(expense);
@@ -60,4 +61,13 @@ router.delete("/:expenseId", async (req, res) => {
   res.json("expense deleted");
 });
 
+router.put("/:expenseId", validateToken, async (req, res) => {
+  const expenseId = req.params.expenseId;
+  const expense = req.body;
+  expense.username = req.user.username;
+
+  await Expenses.update(expense, { where: { id: expenseId } });
+
+  res.json("expense updated");
+});
 module.exports = router;

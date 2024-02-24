@@ -1,5 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
 import { AuthContext } from "../utility/AuthContext";
+import SettingsIcon from "@mui/icons-material/Settings";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const ProfileSettings = ({ btnEl, setIsOpen }) => {
   const { setLoggedIn } = useContext(AuthContext);
@@ -21,7 +23,8 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
   const options = [
     {
       value: "settings",
-      label: "Profile settings",
+      label: "Settings",
+      icon: <SettingsIcon sx={{ fontSize: 20 }} />,
       fn: () => {
         // window.location.href = "/profile";
       },
@@ -29,6 +32,7 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
     {
       value: "logout",
       label: "Log out",
+      icon: <LogoutIcon sx={{ fontSize: 20 }} />,
       fn: () => logOut(),
     },
   ];
@@ -47,17 +51,18 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
     return (
       <div
         key={option.value}
-        className="rounded-sm hover:bg-slate-200 p-1 text-left last:border-t border-t-slate-300/60"
+        className="flex items-center text-xs rounded-sm hover:bg-slate-200 p-1 text-left last:border-t border-t-slate-300/60"
         onClick={option.fn}
       >
-        {option.label}
+        <div className="mr-1">{option.icon}</div>
+        <div className="text-nowrap">{option.label}</div>
       </div>
     );
   });
 
   return (
     <div className="relative">
-      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-gray-100 shadow">
+      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-slate-100 shadow">
         {renderedOptions}
       </div>
     </div>

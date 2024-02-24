@@ -14,7 +14,11 @@ export default function SelectComponent({ month, setMonth, year, setYear }) {
   };
 
   let listOfYears = [];
-  for (let y = 2020; y <= new Date().getFullYear(); y++) {
+  for (
+    let y = new Date().getFullYear() - 3;
+    y <= new Date().getFullYear();
+    y++
+  ) {
     listOfYears.push(y);
   }
 
@@ -34,21 +38,45 @@ export default function SelectComponent({ month, setMonth, year, setYear }) {
             onChange={handleChangeMonth}
             label="Month"
           >
-            <MenuItem value="">
+            <MenuItem value="" sx={{ fontSize: 14 }}>
               <em>None</em>
             </MenuItem>
-            <MenuItem value={0}>Jan</MenuItem>
-            <MenuItem value={1}>Feb</MenuItem>
-            <MenuItem value={2}>Mar</MenuItem>
-            <MenuItem value={3}>Apr</MenuItem>
-            <MenuItem value={4}>May</MenuItem>
-            <MenuItem value={5}>Jun</MenuItem>
-            <MenuItem value={6}>Jul</MenuItem>
-            <MenuItem value={7}>Aug</MenuItem>
-            <MenuItem value={8}>Sep</MenuItem>
-            <MenuItem value={9}>Oct</MenuItem>
-            <MenuItem value={10}>Nov</MenuItem>
-            <MenuItem value={11}>Dec</MenuItem>
+            <MenuItem value={0} sx={{ fontSize: 14 }}>
+              Jan
+            </MenuItem>
+            <MenuItem value={1} sx={{ fontSize: 14 }}>
+              Feb
+            </MenuItem>
+            <MenuItem value={2} sx={{ fontSize: 14 }}>
+              Mar
+            </MenuItem>
+            <MenuItem value={3} sx={{ fontSize: 14 }}>
+              Apr
+            </MenuItem>
+            <MenuItem value={4} sx={{ fontSize: 14 }}>
+              May
+            </MenuItem>
+            <MenuItem value={5} sx={{ fontSize: 14 }}>
+              Jun
+            </MenuItem>
+            <MenuItem value={6} sx={{ fontSize: 14 }}>
+              Jul
+            </MenuItem>
+            <MenuItem value={7} sx={{ fontSize: 14 }}>
+              Aug
+            </MenuItem>
+            <MenuItem value={8} sx={{ fontSize: 14 }}>
+              Sep
+            </MenuItem>
+            <MenuItem value={9} sx={{ fontSize: 14 }}>
+              Oct
+            </MenuItem>
+            <MenuItem value={10} sx={{ fontSize: 14 }}>
+              Nov
+            </MenuItem>
+            <MenuItem value={11} sx={{ fontSize: 14 }}>
+              Dec
+            </MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -69,7 +97,7 @@ export default function SelectComponent({ month, setMonth, year, setYear }) {
           >
             {listOfYears.map((y, key) => {
               return (
-                <MenuItem value={y} key={key}>
+                <MenuItem value={y} key={key} sx={{ fontSize: 14 }}>
                   {y}
                 </MenuItem>
               );

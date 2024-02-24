@@ -75,14 +75,14 @@ const Expense = () => {
                       {dateExtractor(new Date(expense.createdAt))}
                     </div>
                     <div className="font-mono mt-1 font-semibold">
-                      {expense.expenseTitle}
+                      {expense.title}
                     </div>
                     <div className="expenseLocation text-sm font-normal text-gray-500 italic">
-                      {expense.expenseLocation}
+                      {expense.location}
                     </div>
                   </div>
                   <div className="expenseValue w-2/5 font-semibold align-bottom text-red-700">
-                    -{expense.expenseValue} KM
+                    -{expense.value} KM
                   </div>
                 </div>
               </div>
