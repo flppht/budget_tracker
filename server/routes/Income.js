@@ -45,6 +45,7 @@ router.get("/byId/:id", async (req, res) => {
 router.post("/", validateToken, async (req, res) => {
   const income = req.body;
   income.username = req.user.username;
+  income.type = "income";
   await Income.create(income);
 
   res.json(income);
@@ -56,6 +57,17 @@ router.delete("/:incomeId", async (req, res) => {
   await Income.destroy({ where: { id: incomeId } });
 
   res.json("income deleted");
+});
+
+router.put("/:incomeId", validateToken, async (req, res) => {
+  const incomeId = req.params.incomeId;
+  const income = req.body;
+  income.username = req.user.username;
+  console.log(income);
+
+  await Income.update(income, { where: { id: incomeId } });
+
+  res.json("income updated");
 });
 
 module.exports = router;

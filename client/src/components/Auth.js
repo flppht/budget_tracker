@@ -73,21 +73,20 @@ const Auth = () => {
 
           <Button
             type="submit"
-            className="bg-cyan-500 shadow-cyan-500/50 mt-5 mb-5"
+            className="bg-cyan-500 shadow-cyan-500/50 mt-5 mb-5 hover:bg-cyan-500/80"
           >
             {login ? "Sign in" : "Sign up"}
           </Button>
           <div className="flex flex-row items-center justify-center space-x-3">
-            <hr />
+            <hr className="authHr" />
             <label className="text-center text-gray-600 text-xs font-semibold">
-              {" "}
-              OR{" "}
+              OR
             </label>
-            <hr />
+            <hr className="authHr" />
           </div>
           <Button
             type="button"
-            className="bg-gray-400 shadow-gray-500/50 mt-3 mb-2"
+            className="bg-gray-400 shadow-gray-500/50 mt-3 mb-2 hover:bg-gray-500/70"
             onClick={() => setLogin(!login)}
           >
             {login ? "Sign up" : "Sign in"}

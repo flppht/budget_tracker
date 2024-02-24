@@ -1,17 +1,21 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./components/Home";
-import CreateExpense from "./components/CreateExpense";
-import ExpensePage from "./components/ExpensePage";
 import TotalAmount from "./components/TotalAmout";
 import Expenses from "./components/Expenses";
 import Income from "./components/Income";
-import CreateIncome from "./components/CreateIncome";
-import IncomePage from "./components/IncomePage";
 import { useEffect, useState } from "react";
 import { AuthContext } from "./utility/AuthContext";
 import axios from "axios";
 import NavBar from "./components/NavBar";
+import PageNotFound from "./components/PageNotFound";
+import ItemPage from "./components/ItemPage";
+import CreateItem from "./components/CreateItem";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState({
@@ -52,10 +56,27 @@ const App = () => {
                 <Route path="/total" element={<TotalAmount />} />
                 <Route path="/expenses" element={<Expenses />} />
                 <Route path="/income" element={<Income />} />
-                <Route path="/createexpense" element={<CreateExpense />} />
-                <Route path="/createincome" element={<CreateIncome />} />
-                <Route path="/expenses/:id" element={<ExpensePage />} />
-                <Route path="/income/:id" element={<IncomePage />} />
+                <Route
+                  path="/createexpense"
+                  element={<CreateItem endpoint="expenses" />}
+                />
+                <Route
+                  path="/createincome"
+                  element={<CreateItem endpoint="income" />}
+                />
+                <Route
+                  path="/expenses/:id"
+                  element={<ItemPage endpoint="expenses" />}
+                />
+                <Route
+                  path="/income/:id"
+                  element={<ItemPage endpoint="income" />}
+                />
+                <Route path="/pagenotfound" element={<PageNotFound />} />
+                <Route
+                  path="*"
+                  element={<Navigate to="/pagenotfound" replace={true} />}
+                />
               </>
             )}
           </Routes>

@@ -1,14 +1,18 @@
 module.exports = (sequelize, DataTypes) => {
   const Income = sequelize.define("Income", {
-    incomeTitle: {
+    type: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    incomeValue: {
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    value: {
       type: DataTypes.FLOAT,
       allowNull: false,
     },
-    incomeLocation: {
+    location: {
       type: DataTypes.STRING,
       allowNull: true,
     },

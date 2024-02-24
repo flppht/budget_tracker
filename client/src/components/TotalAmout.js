@@ -83,7 +83,7 @@ const TotalAmount = () => {
                 className="expense flex justify-center"
                 onClick={() =>
                   navigate(
-                    `/${resource.expenseTitle ? "expenses" : "income"}/${
+                    `/${resource.type === "expense" ? "expenses" : "income"}/${
                       resource.id
                     }`
                   )
@@ -94,23 +94,23 @@ const TotalAmount = () => {
                     {dateExtractor(new Date(resource.createdAt))}
                   </div>
                   <div className="font-mono mt-1 font-semibold">
-                    {resource.expenseTitle || resource.incomeTitle}
+                    {resource.title}
                   </div>
                   <div className="expenseLocation text-sm font-normal text-gray-500 italic">
-                    {resource.expenseLocation || resource.incomeLocation}
+                    {resource.location}
                   </div>
                 </div>
-                {resource.expenseValue ? (
+                {resource.type === "expense" ? (
                   <div
                     className={`expenseValue w-2/5 font-semibold align-bottom text-red-700`}
                   >
-                    -{resource.expenseValue} KM
+                    -{resource.value} KM
                   </div>
                 ) : (
                   <div
                     className={`expenseValue w-2/5 font-semibold align-bottom text-green-700`}
                   >
-                    +{resource.incomeValue} KM
+                    +{resource.value} KM
                   </div>
                 )}
               </div>

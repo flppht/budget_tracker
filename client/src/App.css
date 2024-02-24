@@ -65,8 +65,14 @@ body {
     flex-direction: column;
 }
 
+.expenseDate, .incomeDate {
+    font-size: smaller;
+}
+
 .expenseTitle, .incomeTitle {
     font-weight: bold;
+    width: fit-content;
+    margin-top: 4px;
 }
 
 
@@ -74,6 +80,14 @@ body {
     text-align: right;
     padding-right: 10px;
     align-self: end;
+    font-weight: 600;
+    vertical-align: bottom;
+}
+
+.expenseLocation, .incomeLocation {
+    width: fit-content;
+    font-style: italic;
+    font-size: smaller;
 }
 
 .addExpense {
@@ -107,7 +121,7 @@ body {
     border-radius: 5px;
     padding-left: 10px;
     color:rgba(50, 50, 50, 0.727);
-    font-weight: 100;
+    font-weight: 400;
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
@@ -149,7 +163,7 @@ body {
     width: 500px;
 }
 
-hr {
+.authHr {
     width: 40%;
 }
 
@@ -158,4 +172,34 @@ hr {
     color: white;
     font-size: larger;
     padding: 10px;
+}
+
+.expenseContainerPage #inputTitle {
+    width: 100px;
+}
+
+.modalContainer {
+    top: 45%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    max-width: 500px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+#inputEditValue {
+  margin-right: 15px;
+  margin-left: 15px;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  padding-left: 10px;
+  color:rgb(33, 33, 33);
+  font-weight: 400;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }

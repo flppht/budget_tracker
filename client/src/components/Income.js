@@ -75,14 +75,14 @@ const Income = () => {
                       {dateExtractor(new Date(income.createdAt))}
                     </div>
                     <div className="font-mono mt-1 font-semibold">
-                      {income.incomeTitle}
+                      {income.title}
                     </div>
                     <div className="incomeLocation text-sm font-normal text-gray-500 italic">
-                      {income.incomeLocation}
+                      {income.location}
                     </div>
                   </div>
                   <div className="incomeValue w-2/5 font-semibold align-bottom text-green-700">
-                    +{income.incomeValue} KM
+                    +{income.value} KM
                   </div>
                 </div>
               </div>

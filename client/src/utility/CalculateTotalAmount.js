@@ -1,7 +1,11 @@
-const CalculateTotalAmount = (array) => {
+const CalculateTotalAmount = (array, type) => {
   let amount = 0;
   array.forEach((element) => {
-    amount += -element.expenseValue || element.incomeValue;
+    if (element.type === "expense") {
+      amount += -element.value;
+    } else {
+      amount += element.value;
+    }
   });
 
   return amount.toFixed(2);

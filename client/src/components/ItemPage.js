@@ -5,40 +5,40 @@ import dateExtractor from "../utility/DateExtractor";
 import Button from "./Button";
 import Modal from "./Modal";
 
-const IncomePage = () => {
-  const [income, setIncome] = useState({});
+const ItemPage = ({ endpoint }) => {
+  const [item, setItem] = useState({});
+  let { id } = useParams();
   const [showModal, setShowModal] = useState(false);
   const [modalInput, setModalInput] = useState({ field: "", value: "" });
-  let { id } = useParams();
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_URL}/income/byId/${id}`)
+      .get(`${process.env.REACT_APP_SERVER_URL}/${endpoint}/byId/${id}`)
       .then((response) => {
         if (!response.data) {
           navigate("/pagenotfound");
-        } else setIncome(response.data);
+        } else setItem(response.data);
       });
   }, []);
 
   const handleDelete = () => {
     axios
-      .delete(`${process.env.REACT_APP_SERVER_URL}/income/${id}`)
+      .delete(`${process.env.REACT_APP_SERVER_URL}/${endpoint}/${id}`)
       .then(() => {
-        navigate("/income");
+        navigate(`/${endpoint}`);
       });
   };
 
   const handleUpdate = () => {
     axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/income/${id}`, income, {
+      .put(`${process.env.REACT_APP_SERVER_URL}/${endpoint}/${id}`, item, {
         headers: {
           accessToken: localStorage.getItem("accessToken"),
         },
       })
       .then(() => {
-        navigate("/income");
+        navigate(`/${endpoint}`);
       });
   };
 
@@ -53,11 +53,11 @@ const IncomePage = () => {
 
   const handleSave = ({ field, value }) => {
     if (field === "title") {
-      setIncome({ ...income, incomeTitle: value });
+      setItem({ ...item, title: value });
     } else if (field === "location") {
-      setIncome({ ...income, incomeLocation: value });
+      setItem({ ...item, location: value });
     } else {
-      setIncome({ ...income, incomeValue: value });
+      setItem({ ...item, value: value });
     }
     setShowModal(false);
   };
@@ -67,26 +67,26 @@ const IncomePage = () => {
       <div className="income flex justify-center mb-4">
         <div className="titleContainer w-3/5">
           <div className="incomeDate text-gray-500">
-            {dateExtractor(new Date(income?.createdAt))}
+            {dateExtractor(new Date(item?.createdAt))}
           </div>
           <div
             className="incomeTitle font-mono"
-            onClick={() => handleClick("title", income?.incomeTitle)}
+            onClick={() => handleClick("title", item?.title)}
           >
-            {income?.incomeTitle}
+            {item?.title}
           </div>
           <div
             className="incomeLocation text-gray-500"
-            onClick={() => handleClick("location", income?.incomeLocation)}
+            onClick={() => handleClick("location", item?.location)}
           >
-            {income?.incomeLocation || "Add location"}
+            {item?.location || "Add location"}
           </div>
         </div>
         <div
           className="incomeValue w-2/5"
-          onClick={() => handleClick("value", income?.incomeValue)}
+          onClick={() => handleClick("value", item?.value)}
         >
-          {income?.incomeValue} KM
+          {item?.value} KM
         </div>
       </div>
       <hr />
@@ -113,4 +113,4 @@ const IncomePage = () => {
   );
 };
 
-export default IncomePage;
+export default ItemPage;
