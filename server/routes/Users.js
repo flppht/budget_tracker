@@ -16,7 +16,9 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+
   const user = await Users.findOne({ where: { username: username } });
+
   if (!user) {
     res.json({ error: "User does not exist!" });
   } else {
@@ -37,6 +39,24 @@ router.post("/login", async (req, res) => {
 
 router.get("/auth", validateToken, (req, res) => {
   res.json(req.user);
+});
+
+router.put("/changepassword", validateToken, async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+
+  const user = await Users.findOne({ where: { id: req.user.id } });
+
+  bcrypt.compare(oldPassword, user.password).then((match) => {
+    if (!match) {
+      res.json({ error: "Your old password is not correct!" });
+    } else {
+      bcrypt.hash(newPassword, 10).then(async (hash) => {
+        await Users.update({ password: hash }, { where: { id: user.id } });
+      });
+
+      res.json("Password sucessfully updated!");
+    }
+  });
 });
 
 module.exports = router;

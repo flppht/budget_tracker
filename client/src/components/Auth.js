@@ -5,9 +5,12 @@ import * as Yup from "yup";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../utility/AuthContext";
+import Notify from "./Notify";
 
 const Auth = () => {
   const [login, setLogin] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
   const { setLoggedIn } = useContext(AuthContext);
 
@@ -26,7 +29,8 @@ const Auth = () => {
       )
       .then((response) => {
         if (response.data.error) {
-          alert(response.data.error);
+          setErrorMessage(response.data.error);
+          setShowModal(true);
         } else {
           if (login) {
             localStorage.setItem("accessToken", response.data.accessToken);
@@ -52,14 +56,18 @@ const Auth = () => {
       .required("You must input a password!"),
   });
 
+  const handleClose = () => {
+    setShowModal(false);
+  };
+
   return (
-    <div className="authContainer">
+    <div>
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        <Form className="formContainer shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
+        <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
           <ErrorMessage name="username" component="span" />
           <Field id="inputUsername" name="username" placeholder="Username" />
           <ErrorMessage name="password" component="span" />
@@ -93,6 +101,7 @@ const Auth = () => {
           </Button>
         </Form>
       </Formik>
+      {showModal && <Notify onClose={handleClose} message={errorMessage} />}
     </div>
   );
 };

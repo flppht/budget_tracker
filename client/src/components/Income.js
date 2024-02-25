@@ -50,7 +50,7 @@ const Income = () => {
           <label className="text-lg mb-2 font-semibold justify-self-start col-span-2">
             Income: {calculateTotalAmount(listOfIncome)} KM
           </label>
-          <div className="addIncome justify-self-end font-bold">
+          <div className="justify-self-end font-bold">
             <ImportExportIcon
               onClick={() =>
                 setListOfIncome(sortData(listOfIncome, sort, setSort))
@@ -65,23 +65,23 @@ const Income = () => {
         <div className="container flex flex-col overflow-auto">
           {listOfIncome.map((income, key) => {
             return (
-              <div className="incomeContainer shadow-md" key={key}>
+              <div className="itemContainer shadow-md" key={key}>
                 <div
-                  className="income flex justify-center"
+                  className="item flex justify-center"
                   onClick={() => navigate(`/income/${income.id}`)}
                 >
                   <div className="titleContainer w-3/5">
-                    <div className="incomeDate text-sm font-normal text-gray-500">
+                    <div className="itemDate text-sm font-normal text-gray-500">
                       {dateExtractor(new Date(income.createdAt))}
                     </div>
                     <div className="font-mono mt-1 font-semibold">
                       {income.title}
                     </div>
-                    <div className="incomeLocation text-sm font-normal text-gray-500 italic">
+                    <div className="itemLocation text-sm font-normal text-gray-500 italic">
                       {income.location}
                     </div>
                   </div>
-                  <div className="incomeValue w-2/5 font-semibold align-bottom text-green-700">
+                  <div className="itemValue w-2/5 font-semibold align-bottom text-green-700">
                     +{income.value} KM
                   </div>
                 </div>

@@ -38,15 +38,15 @@ const Modal = ({ input, onClose, onSave }) => {
         onClick={onClose}
         className="fixed inset-0 bg-gray-300 opacity-80"
       ></div>
-      <div className="modalContainer fixed bg-slate-100 p-10 flex flex-col items-center">
+      <div className="modalContainer fixed bg-slate-100 flex flex-col items-center">
         <div className="flex flex-col">
-          <label className="font-semibold ml-4">Edit value:</label>
+          <label className="font-semibold ml-2">Edit value:</label>
           {!isInputValid() && (invalidValue || invalidLocation)}
           <input
             value={value}
             id="inputEditValue"
             onChange={(event) => setValue(event.target.value)}
-            className="w-80"
+            className="w-44 md:w-80 mx-1 md:mx-4"
           />
         </div>
         <Button

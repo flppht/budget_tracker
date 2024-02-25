@@ -63,29 +63,30 @@ const ItemPage = ({ endpoint }) => {
   };
 
   return (
-    <div className="incomeContainerPage shadow-md mt-16">
-      <div className="income flex justify-center mb-4">
+    <div className="itemContainerPage shadow-md mt-16">
+      <div className="item flex justify-center mb-4">
         <div className="titleContainer w-3/5">
-          <div className="incomeDate text-gray-500">
+          <div className="itemDate text-gray-500">
             {dateExtractor(new Date(item?.createdAt))}
           </div>
           <div
-            className="incomeTitle font-mono"
+            className="itemTitle font-mono"
             onClick={() => handleClick("title", item?.title)}
           >
             {item?.title}
           </div>
           <div
-            className="incomeLocation text-gray-500"
+            className="itemLocation text-gray-500"
             onClick={() => handleClick("location", item?.location)}
           >
             {item?.location || "Add location"}
           </div>
         </div>
         <div
-          className="incomeValue w-2/5"
+          className="itemValue w-2/5"
           onClick={() => handleClick("value", item?.value)}
         >
+          {endpoint === "expenses" ? "-" : ""}
           {item?.value} KM
         </div>
       </div>
