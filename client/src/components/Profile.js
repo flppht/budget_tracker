@@ -10,7 +10,7 @@ const Profile = ({ btnEl, setIsOpen }) => {
 
   useEffect(() => {
     const handler = (event) => {
-      if (!btnEl.current.contains(event.target)) {
+      if (!btnEl?.current?.contains(event.target)) {
         setIsOpen(false);
       }
     };
