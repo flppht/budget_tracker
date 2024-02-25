@@ -1,10 +1,12 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useEffect } from "react";
 import { AuthContext } from "../utility/AuthContext";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useNavigate } from "react-router-dom";
 
-const ProfileSettings = ({ btnEl, setIsOpen }) => {
+const Profile = ({ btnEl, setIsOpen }) => {
   const { setLoggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handler = (event) => {
@@ -26,7 +28,7 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
       label: "Settings",
       icon: <SettingsIcon sx={{ fontSize: 20 }} />,
       fn: () => {
-        // window.location.href = "/profile";
+        navigate("/settings");
       },
     },
     {
@@ -44,14 +46,14 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
       id: 0,
       status: false,
     });
-    window.location.href = "/";
+    navigate("/");
   };
 
   const renderedOptions = options.map((option) => {
     return (
       <div
         key={option.value}
-        className="flex items-center text-xs rounded-sm hover:bg-slate-200 p-1 text-left last:border-t border-t-slate-300/60"
+        className="flex items-center text-sm rounded-sm hover:bg-slate-200 p-1 text-left last:border-t border-t-slate-300/60"
         onClick={option.fn}
       >
         <div className="mr-1">{option.icon}</div>
@@ -69,4 +71,4 @@ const ProfileSettings = ({ btnEl, setIsOpen }) => {
   );
 };
 
-export default ProfileSettings;
+export default Profile;

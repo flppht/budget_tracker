@@ -34,31 +34,31 @@ const CreateItem = ({ endpoint }) => {
   });
 
   return (
-    <div className="createExpenseContainer">
+    <div className="mt-12">
       <Formik
         initialValues={initialValues}
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        <Form className="formContainer shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
+        <Form className="formContainer shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10 w-72 md:w-96">
           <label>Title:</label>
           <ErrorMessage name="title" component="span" />
           <Field
-            id="inputCreateExpense"
+            id="inputCreateItem"
             name="title"
             placeholder="Ex. Shopping..."
           />
           <label>Value:</label>
           <ErrorMessage name="value" component="span" />
           <Field
-            id="inputCreateExpense"
+            id="inputCreateItem"
             name="value"
             placeholder="Ex. 149.99..."
           />
           <label>Location:</label>
           <ErrorMessage name="location" component="span" />
           <Field
-            id="inputCreateExpense"
+            id="inputCreateItem"
             name="location"
             placeholder="Ex. Springfield..."
           />

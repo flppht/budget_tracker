@@ -4,7 +4,7 @@ import WalletIcon from "@mui/icons-material/Wallet";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import SavingsIcon from "@mui/icons-material/Savings";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
-import ProfileSettings from "./ProfileSettings";
+import Profile from "./Profile";
 
 function NavLinks({ username }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +23,7 @@ function NavLinks({ username }) {
         <div className="flex flex-col items-center">
           {<PermIdentityIcon />} <p className="text-sm text-balance">Profile</p>
         </div>
-        {isOpen && <ProfileSettings setIsOpen={setIsOpen} btnEl={btnEl} />}
+        {isOpen && <Profile setIsOpen={setIsOpen} btnEl={btnEl} />}
       </button>
     </>
   );

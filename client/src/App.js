@@ -16,6 +16,7 @@ import NavBar from "./components/NavBar";
 import PageNotFound from "./components/PageNotFound";
 import ItemPage from "./components/ItemPage";
 import CreateItem from "./components/CreateItem";
+import Settings from "./components/Settings";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState({
@@ -72,6 +73,7 @@ const App = () => {
                   path="/income/:id"
                   element={<ItemPage endpoint="income" />}
                 />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="/pagenotfound" element={<PageNotFound />} />
                 <Route
                   path="*"

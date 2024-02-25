@@ -36,7 +36,7 @@ body {
     height: 30rem;
 }
 
-.expenseContainer, .incomeContainer {
+.itemContainer {
     background-color: rgba(255, 255, 255, 0.573);
     width: 300px;
     border-radius: 5px;
@@ -46,7 +46,7 @@ body {
     cursor: pointer;
 }
 
-.expenseContainerPage, .incomeContainerPage {
+.itemContainerPage {
     background-color: rgba(255, 255, 255, 0.573);
     width: 300px;
     border-radius: 5px;
@@ -54,7 +54,7 @@ body {
     padding: 4px;
 }
 
-.expense, .income {
+.item {
     display: flex;
     flex-direction: row;
 }
@@ -65,18 +65,18 @@ body {
     flex-direction: column;
 }
 
-.expenseDate, .incomeDate {
+.itemDate {
     font-size: smaller;
 }
 
-.expenseTitle, .incomeTitle {
+.itemTitle {
     font-weight: bold;
     width: fit-content;
     margin-top: 4px;
 }
 
 
-.expenseValue, .incomeValue{
+.itemValue{
     text-align: right;
     padding-right: 10px;
     align-self: end;
@@ -84,37 +84,22 @@ body {
     vertical-align: bottom;
 }
 
-.expenseLocation, .incomeLocation {
+.itemLocation {
     width: fit-content;
     font-style: italic;
     font-size: smaller;
 }
 
-.addExpense {
-    background-color: rgba(11, 143, 160, 0.808);
-    padding-bottom: 1px;
-    color: white;
-}
-
-.createExpenseContainer, .createIncomeContainer{
-    width: 100vw;
-    margin-top: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .formContainer {
     display: flex;
     flex-direction: column;
-    width: 500px;
     height: auto;
     border-radius: 10px;
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.573);
 }
 
-.formContainer #inputCreateExpense, #inputCreateIncome {
+.formContainer #inputCreateItem {
     height: 40px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -126,8 +111,8 @@ body {
 }
 
 .formContainer #inputUsername, #inputPassword {
-    margin-right: 15px;
-    margin-left: 15px;
+    margin-right: 10px;
+    margin-left: 10px;
     height: 40px;
     margin-top: 5px;
     margin-bottom: 10px;
@@ -138,7 +123,18 @@ body {
     box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
 }
 
-.formContainer #inputUsername:focus, #inputPassword:focus, #inputCreateExpense:focus, #inputCreateIncome:focus {
+.formContainer #inputOldPassword, #inputNewPassword {
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding-left: 10px;
+    color:rgb(33, 33, 33);
+    font-weight: 400;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.formContainer #inputUsername:focus, #inputPassword:focus, #inputCreateItem:focus, #inputOldPassword:focus, #inputNewPassword:focus {
     outline: none;
     box-shadow: 0 0 0 2px rgba(134, 157, 173, 0.764);
 }
@@ -151,16 +147,10 @@ body {
     margin-left: 15px;
 }
 
-.authContainer {
-    display: flex;
-}
-
 .welcomePage {
     display: flex;
     flex-direction: column;
-    padding-right: 30px;
     margin-top: 20px;
-    width: 500px;
 }
 
 .authHr {
@@ -174,16 +164,11 @@ body {
     padding: 10px;
 }
 
-.expenseContainerPage #inputTitle {
-    width: 100px;
-}
-
 .modalContainer {
-    top: 45%;
+    top: auto;
     left: 50%;
     right: auto;
     bottom: auto;
-    margin-right: -50%;
     transform: translate(-50%, -50%);
     max-width: 500px;
     padding: 30px;
@@ -192,8 +177,6 @@ body {
 }
 
 #inputEditValue {
-  margin-right: 15px;
-  margin-left: 15px;
   height: 40px;
   margin-top: 5px;
   margin-bottom: 10px;
@@ -202,4 +185,20 @@ body {
   color:rgb(33, 33, 33);
   font-weight: 400;
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.settingsContainer {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.573);
+}
+
+.settingsContainer span {
+    color: rgb(216, 23, 23);
+    font-style: italic;
+    font-size: smaller;
+    margin-left: 15px;
 }
