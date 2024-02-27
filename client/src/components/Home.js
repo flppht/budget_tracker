@@ -4,7 +4,7 @@ import WalletIcon from "@mui/icons-material/Wallet";
 
 const HomePage = () => {
   return (
-    <div className="flex flex-col md:flex-row md:space-x-5 mt-16 md:mt-40 items-center md:items-baseline">
+    <div className="flex flex-col md:flex-row md:space-x-5 mt-16 md:mt-40 items-center">
       <div className="welcomePage items-left mb-12 w-64 md:w-96 md:pr-8">
         <div className="flex flex-row mb-4 items-center text-gray-800 ">
           <div>

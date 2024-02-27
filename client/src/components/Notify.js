@@ -14,7 +14,7 @@ const Notify = ({ onClose, message }) => {
   return (
     <div>
       <Snackbar
-        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
         open
         autoHideDuration={4000}
         onClose={handleClose}
