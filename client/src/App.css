@@ -155,6 +155,9 @@ body {
 
 .authHr {
     width: 40%;
+    border-width: 1/2px;
+    border-radius: 5px;
+    border-color: rgb(216, 216, 216);
 }
 
 .profileButton {

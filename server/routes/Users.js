@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { Users } = require("../models");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { sign } = require("jsonwebtoken");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
@@ -11,7 +11,7 @@ router.post("/register", async (req, res) => {
     Users.create({ username, password: hash });
   });
 
-  res.json("user created");
+  res.json("User successfully created!");
 });
 
 router.post("/login", async (req, res) => {

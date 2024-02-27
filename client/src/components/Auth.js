@@ -10,7 +10,7 @@ import Notify from "./Notify";
 const Auth = () => {
   const [login, setLogin] = useState(true);
   const [showModal, setShowModal] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const { setLoggedIn } = useContext(AuthContext);
 
@@ -29,7 +29,7 @@ const Auth = () => {
       )
       .then((response) => {
         if (response.data.error) {
-          setErrorMessage(response.data.error);
+          setMessage(response.data.error);
           setShowModal(true);
         } else {
           if (login) {
@@ -40,6 +40,9 @@ const Auth = () => {
               status: true,
             });
             navigate("/total");
+          } else {
+            setMessage(response.data);
+            setShowModal(true);
           }
         }
       });
@@ -68,6 +71,9 @@ const Auth = () => {
         validationSchema={validationSchema}
       >
         <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
+          <div className="text-2xl font-bold text-center text-slate-700 mb-4">
+            {login ? "Sign in" : "Create account"}
+          </div>
           <ErrorMessage name="username" component="span" />
           <Field id="inputUsername" name="username" placeholder="Username" />
           <ErrorMessage name="password" component="span" />
@@ -81,27 +87,32 @@ const Auth = () => {
 
           <Button
             type="submit"
-            className="bg-cyan-500 shadow-cyan-500/50 mt-5 mb-5 hover:bg-cyan-500/80"
+            className="bg-cyan-500 shadow-cyan-500/50 mt-5 hover:bg-cyan-500/80"
           >
             {login ? "Sign in" : "Sign up"}
           </Button>
-          <div className="flex flex-row items-center justify-center space-x-3">
+          <div className="flex flex-row items-center justify-center space-x-3 mt-3">
             <hr className="authHr" />
-            <label className="text-center text-gray-600 text-xs font-semibold">
+            <label className="text-center text-xs font-semibold text-slate-600">
               OR
             </label>
             <hr className="authHr" />
           </div>
-          <Button
+          {/* <Button
             type="button"
             className="bg-gray-400 shadow-gray-500/50 mt-3 mb-2 hover:bg-gray-500/70"
             onClick={() => setLogin(!login)}
+          > */}
+          <div
+            className="text-center font-semibold text-sm mt-3 mb-1 text-slate-600 hover:text-slate-900 cursor-pointer"
+            onClick={() => setLogin(!login)}
           >
-            {login ? "Sign up" : "Sign in"}
-          </Button>
+            {login ? "SIGN UP" : "SIGN IN"}
+          </div>
+          {/* </Button> */}
         </Form>
       </Formik>
-      {showModal && <Notify onClose={handleClose} message={errorMessage} />}
+      {showModal && <Notify onClose={handleClose} message={message} />}
     </div>
   );
 };

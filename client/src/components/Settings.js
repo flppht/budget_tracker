@@ -52,11 +52,13 @@ const Settings = () => {
         validationSchema={validationSchema}
       >
         <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
-          <div className="text-xl font-semibold">
+          <div className="text-xl font-semibold text-slate-800">
             Username: {loggedIn.username}
           </div>
           <div className="flex flex-col mt-5 justify-center">
-            <label className="font-semibold">Change password</label>
+            <label className="font-semibold text-slate-800 mb-2">
+              Change password
+            </label>
             <ErrorMessage name="oldPassword" component="span" />
             <Field
               id="inputOldPassword"

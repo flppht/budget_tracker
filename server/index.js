@@ -1,8 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const dotenv = require("dotenv");
-dotenv.config();
+require("dotenv").config();
 
 const db = require("./models");
 
@@ -19,8 +18,13 @@ app.use("/income", incomeRouter);
 const usersRouter = require("./routes/Users");
 app.use("/auth", usersRouter);
 
-db.sequelize.sync().then(() => {
-  app.listen(process.env.PORT, () => {
-    console.log("Server is listening on port: ", process.env.PORT);
-  });
-});
+const port = process.env.PORT || 3001;
+
+db.sequelize
+  .sync()
+  .then(() => {
+    app.listen(port, () => {
+      console.log("Server is listening on port: ", port);
+    });
+  })
+  .catch((err) => console.log(err));
