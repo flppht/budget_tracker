@@ -79,6 +79,10 @@ const App = () => {
                   path="*"
                   element={<Navigate to="/pagenotfound" replace={true} />}
                 />
+                <Route
+                  path="/"
+                  element={<Navigate to="/total" replace={true} />}
+                />
               </>
             )}
           </Routes>

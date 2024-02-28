@@ -50,12 +50,12 @@ const Auth = () => {
 
   const validationSchema = Yup.object().shape({
     username: Yup.string()
-      .min(3)
-      .max(15)
+      .min(3, "Username must contain at least 3 characters.")
+      .max(15, "Username must contain a maximum of 15 characters.")
       .required("You must input an username!"),
     password: Yup.string()
-      .min(4)
-      .max(20)
+      .min(4, "Password must contain at least 4 characters.")
+      .max(20, "Password must contain a maximum of 20 characters.")
       .required("You must input a password!"),
   });
 
@@ -70,7 +70,7 @@ const Auth = () => {
         onSubmit={onSubmit}
         validationSchema={validationSchema}
       >
-        <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
+        <Form className="formContainer w-80 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
           <div className="text-2xl font-bold text-center text-slate-700 mb-4">
             {login ? "Sign in" : "Create account"}
           </div>
