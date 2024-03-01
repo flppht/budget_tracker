@@ -6,12 +6,14 @@ import ImportExportIcon from "@mui/icons-material/ImportExport";
 import sortData from "../utility/SortData";
 import calculateTotalAmount from "../utility/CalculateTotalAmount";
 import Select from "./Select";
+import { useSelector } from "react-redux";
 
 const TotalAmount = () => {
   const [totalAmount, setTotalAmount] = useState([]);
   const [sort, setSort] = useState(false);
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
+  const accessToken = useSelector((state) => state.accessToken.token);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,14 +27,14 @@ const TotalAmount = () => {
         const expenses = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/expenses`,
           {
-            headers: { accessToken: localStorage.getItem("accessToken") },
+            headers: { accessToken },
             params: properties,
           }
         );
         const income = await axios.get(
           `${process.env.REACT_APP_SERVER_URL}/income`,
           {
-            headers: { accessToken: localStorage.getItem("accessToken") },
+            headers: { accessToken },
             params: properties,
           }
         );

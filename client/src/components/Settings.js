@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
-import { AuthContext } from "../utility/AuthContext";
 import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Notify from "./Notify";
+import { useSelector } from "react-redux";
 
 const Settings = () => {
-  const { loggedIn } = useContext(AuthContext);
+  const auth = useSelector((state) => state.auth);
+  const accessToken = useSelector((state) => state.accessToken.token);
   const [showNotify, setShowNotify] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -20,7 +21,7 @@ const Settings = () => {
     axios
       .put(`${process.env.REACT_APP_SERVER_URL}/auth/changepassword`, data, {
         headers: {
-          accessToken: localStorage.getItem("accessToken"),
+          accessToken,
         },
       })
       .then((response) => {
@@ -53,7 +54,7 @@ const Settings = () => {
       >
         <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
           <div className="text-xl font-semibold text-slate-800">
-            Username: {loggedIn.username}
+            Username: {auth.username}
           </div>
           <div className="flex flex-col mt-5 justify-center">
             <label className="font-semibold text-slate-800 mb-2">
@@ -86,7 +87,7 @@ const Settings = () => {
       </Formik>
       {showNotify && (
         <Notify message={message} onClose={() => setShowNotify(false)} />
-      )}{" "}
+      )}
     </div>
   );
 };

@@ -4,9 +4,11 @@ import axios from "axios";
 import * as Yup from "yup";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const CreateItem = ({ endpoint }) => {
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.accessToken.token);
   const initialValues = {
     title: "",
     value: null,
@@ -17,7 +19,7 @@ const CreateItem = ({ endpoint }) => {
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/${endpoint}`, data, {
         headers: {
-          accessToken: localStorage.getItem("accessToken"),
+          accessToken,
         },
       })
       .then(() => {

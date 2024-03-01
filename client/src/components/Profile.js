@@ -1,11 +1,12 @@
-import React, { useContext, useEffect } from "react";
-import { AuthContext } from "../utility/AuthContext";
+import React, { useEffect } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout, removeAccessToken } from "../store";
 
 const Profile = ({ btnEl, setIsOpen }) => {
-  const { setLoggedIn } = useContext(AuthContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -40,12 +41,8 @@ const Profile = ({ btnEl, setIsOpen }) => {
   ];
 
   const logOut = () => {
-    localStorage.removeItem("accessToken");
-    setLoggedIn({
-      username: "",
-      id: 0,
-      status: false,
-    });
+    dispatch(logout());
+    dispatch(removeAccessToken());
     navigate("/");
   };
 

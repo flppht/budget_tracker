@@ -9,85 +9,78 @@ import Home from "./components/Home";
 import TotalAmount from "./components/TotalAmout";
 import Expenses from "./components/Expenses";
 import Income from "./components/Income";
-import { useEffect, useState } from "react";
-import { AuthContext } from "./utility/AuthContext";
+import { useEffect } from "react";
 import axios from "axios";
 import NavBar from "./components/NavBar";
 import PageNotFound from "./components/PageNotFound";
 import ItemPage from "./components/ItemPage";
 import CreateItem from "./components/CreateItem";
 import Settings from "./components/Settings";
+import { useDispatch, useSelector } from "react-redux";
+import { login, logout } from "./store";
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState({
-    username: "",
-    id: 0,
-    status: false,
-  });
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const accessToken = useSelector((state) => state.accessToken);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/auth/auth`, {
-        headers: { accessToken: localStorage.getItem("accessToken") },
+        headers: { accessToken: accessToken?.token },
       })
       .then((response) => {
         if (response.data.error) {
-          setLoggedIn({ ...loggedIn, status: false });
+          dispatch(logout());
         } else {
-          setLoggedIn({
-            username: response.data.username,
-            id: response.data.id,
-            status: true,
-          });
+          dispatch(
+            login({ username: response.data.username, id: response.data.id })
+          );
         }
       });
   }, []);
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
-        <Router>
-          <div className="navbar">
-            {loggedIn.status && <NavBar username={loggedIn.username} />}
-          </div>
-          <Routes>
-            {!loggedIn.status && <Route path="/" element={<Home />} />}
-            {loggedIn.status && (
-              <>
-                <Route path="/total" element={<TotalAmount />} />
-                <Route path="/expenses" element={<Expenses />} />
-                <Route path="/income" element={<Income />} />
-                <Route
-                  path="/createexpense"
-                  element={<CreateItem endpoint="expenses" />}
-                />
-                <Route
-                  path="/createincome"
-                  element={<CreateItem endpoint="income" />}
-                />
-                <Route
-                  path="/expenses/:id"
-                  element={<ItemPage endpoint="expenses" />}
-                />
-                <Route
-                  path="/income/:id"
-                  element={<ItemPage endpoint="income" />}
-                />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/pagenotfound" element={<PageNotFound />} />
-                <Route
-                  path="*"
-                  element={<Navigate to="/pagenotfound" replace={true} />}
-                />
-                <Route
-                  path="/"
-                  element={<Navigate to="/total" replace={true} />}
-                />
-              </>
-            )}
-          </Routes>
-        </Router>
-      </AuthContext.Provider>
+      <Router>
+        <div className="navbar">{auth.status && <NavBar />}</div>
+        <Routes>
+          {!auth.status && <Route path="/" element={<Home />} />}
+          {auth.status && (
+            <>
+              <Route path="/total" element={<TotalAmount />} />
+              <Route path="/expenses" element={<Expenses />} />
+              <Route path="/income" element={<Income />} />
+              <Route
+                path="/createexpense"
+                element={<CreateItem endpoint="expenses" />}
+              />
+              <Route
+                path="/createincome"
+                element={<CreateItem endpoint="income" />}
+              />
+              <Route
+                path="/expenses/:id"
+                element={<ItemPage endpoint="expenses" />}
+              />
+              <Route
+                path="/income/:id"
+                element={<ItemPage endpoint="income" />}
+              />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/pagenotfound" element={<PageNotFound />} />
+              <Route
+                path="*"
+                element={<Navigate to="/pagenotfound" replace={true} />}
+              />
+              <Route
+                path="/"
+                element={<Navigate to="/total" replace={true} />}
+              />
+            </>
+          )}
+        </Routes>
+      </Router>
     </div>
   );
 };
