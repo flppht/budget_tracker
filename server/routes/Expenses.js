@@ -11,7 +11,7 @@ router.get("/", validateToken, async (req, res) => {
 
   if (month && year) {
     let startDate = new Date(year, month, 1, 0, 0, 0);
-    let endDate = new Date(year, month + 1, 0, 23, 59, 59);
+    let endDate = new Date(year, parseInt(month, 10) + 1, 0, 23, 59, 59);
 
     listOfExpenses = await Expenses.findAll({
       where: {
@@ -58,16 +58,15 @@ router.delete("/:expenseId", async (req, res) => {
 
   await Expenses.destroy({ where: { id: expenseId } });
 
-  res.json("expense deleted");
+  res.json("Expense deleted!");
 });
 
-router.put("/:expenseId", validateToken, async (req, res) => {
+router.put("/:expenseId", async (req, res) => {
   const expenseId = req.params.expenseId;
   const expense = req.body;
-  expense.username = req.user.username;
 
   await Expenses.update(expense, { where: { id: expenseId } });
 
-  res.json("expense updated");
+  res.json("Expense updated!");
 });
 module.exports = router;

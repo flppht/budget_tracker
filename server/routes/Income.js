@@ -11,7 +11,7 @@ router.get("/", validateToken, async (req, res) => {
 
   if (month && year) {
     let startDate = new Date(year, month, 1, 0, 0, 0);
-    let endDate = new Date(year, month + 1, 0, 23, 59, 59);
+    let endDate = new Date(year, parseInt(month, 10) + 1, 0, 23, 59, 59);
 
     listOfIncome = await Income.findAll({
       where: {
@@ -56,18 +56,16 @@ router.delete("/:incomeId", async (req, res) => {
 
   await Income.destroy({ where: { id: incomeId } });
 
-  res.json("income deleted");
+  res.json("Income deleted!");
 });
 
-router.put("/:incomeId", validateToken, async (req, res) => {
+router.put("/:incomeId", async (req, res) => {
   const incomeId = req.params.incomeId;
   const income = req.body;
-  income.username = req.user.username;
-  console.log(income);
 
   await Income.update(income, { where: { id: incomeId } });
 
-  res.json("income updated");
+  res.json("Income updated!");
 });
 
 module.exports = router;

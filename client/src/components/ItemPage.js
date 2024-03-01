@@ -32,11 +32,7 @@ const ItemPage = ({ endpoint }) => {
 
   const handleUpdate = () => {
     axios
-      .put(`${process.env.REACT_APP_SERVER_URL}/${endpoint}/${id}`, item, {
-        headers: {
-          accessToken: localStorage.getItem("accessToken"),
-        },
-      })
+      .put(`${process.env.REACT_APP_SERVER_URL}/${endpoint}/${id}`, item)
       .then(() => {
         navigate(`/${endpoint}`);
       });

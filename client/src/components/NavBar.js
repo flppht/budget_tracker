@@ -6,7 +6,7 @@ import SavingsIcon from "@mui/icons-material/Savings";
 import PermIdentityIcon from "@mui/icons-material/PermIdentity";
 import Profile from "./Profile";
 
-function NavLinks({ username }) {
+function NavLinks() {
   const [isOpen, setIsOpen] = useState(false);
   const btnEl = useRef();
 

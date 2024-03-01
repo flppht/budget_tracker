@@ -7,6 +7,7 @@ import ImportExportIcon from "@mui/icons-material/ImportExport";
 import sortData from "../utility/SortData";
 import calculateTotalAmount from "../utility/CalculateTotalAmount";
 import Select from "./Select";
+import { useSelector } from "react-redux";
 
 const Income = () => {
   const [listOfIncome, setListOfIncome] = useState([]);
@@ -14,6 +15,7 @@ const Income = () => {
   const [month, setMonth] = useState(new Date().getMonth());
   const [year, setYear] = useState(new Date().getFullYear());
   const navigate = useNavigate();
+  const accessToken = useSelector((state) => state.accessToken.token);
 
   useEffect(() => {
     const properties = {
@@ -23,7 +25,7 @@ const Income = () => {
 
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/income`, {
-        headers: { accessToken: localStorage.getItem("accessToken") },
+        headers: { accessToken },
         params: properties,
       })
       .then((response) => {
