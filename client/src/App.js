@@ -22,12 +22,12 @@ import { login, logout } from "./store";
 const App = () => {
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
-  const accessToken = useSelector((state) => state.accessToken);
+  const accessToken = useSelector((state) => state.accessToken.token);
 
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/auth/auth`, {
-        headers: { accessToken: accessToken?.token },
+        headers: { accessToken },
       })
       .then((response) => {
         if (response.data.error) {
