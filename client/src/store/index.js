@@ -5,13 +5,30 @@ import {
   setAccessToken,
   removeAccessToken,
 } from "./slices/tokenSlice";
+import {
+  themeReducer,
+  lightTheme,
+  darkTheme,
+  onRefresh,
+  removeTheme,
+} from "./slices/themeSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     accessToken: tokenReducer,
+    theme: themeReducer,
   },
 });
 
-export { login, logout, setAccessToken, removeAccessToken };
+export {
+  login,
+  logout,
+  setAccessToken,
+  removeAccessToken,
+  lightTheme,
+  darkTheme,
+  onRefresh,
+  removeTheme,
+};
 export { store };

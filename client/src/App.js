@@ -17,7 +17,7 @@ import ItemPage from "./components/ItemPage";
 import CreateItem from "./components/CreateItem";
 import Settings from "./components/Settings";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "./store";
+import { login, logout, onRefresh } from "./store";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const App = () => {
   const accessToken = useSelector((state) => state.accessToken.token);
 
   useEffect(() => {
+    dispatch(onRefresh());
     axios
       .get(`${process.env.REACT_APP_SERVER_URL}/auth/auth`, {
         headers: { accessToken },
@@ -43,7 +44,9 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <div className="navbar">{auth.status && <NavBar />}</div>
+        <div className="navbar dark:bg-slate-600/70">
+          {auth.status && <NavBar />}
+        </div>
         <Routes>
           {!auth.status && <Route path="/" element={<Home />} />}
           {auth.status && (

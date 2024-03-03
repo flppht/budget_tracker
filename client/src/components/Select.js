@@ -83,7 +83,6 @@ export default function SelectComponent({ month, setMonth, year, setYear }) {
       <div className="w-1/2">
         <FormControl
           variant="standard"
-          className="w-1/2 text-red-500"
           sx={{ m: 1, minWidth: 65 }}
           size="small"
         >

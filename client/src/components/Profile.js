@@ -3,7 +3,7 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { logout, removeAccessToken } from "../store";
+import { logout, removeAccessToken, removeTheme } from "../store";
 
 const Profile = ({ btnEl, setIsOpen }) => {
   const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const Profile = ({ btnEl, setIsOpen }) => {
 
   const logOut = () => {
     dispatch(logout());
+    dispatch(removeTheme());
     dispatch(removeAccessToken());
     navigate("/");
   };
@@ -50,7 +51,7 @@ const Profile = ({ btnEl, setIsOpen }) => {
     return (
       <div
         key={option.value}
-        className="flex items-center text-sm rounded-sm hover:bg-slate-200 p-1 text-left last:border-t border-t-slate-300/60"
+        className="flex items-center text-sm rounded-sm hover:bg-slate-200 dark:hover:bg-slate-300 p-1 text-left last:border-t border-t-slate-300/60"
         onClick={option.fn}
       >
         <div className="mr-1">{option.icon}</div>
@@ -61,7 +62,7 @@ const Profile = ({ btnEl, setIsOpen }) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-slate-100 shadow">
+      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-slate-100 dark:bg-slate-200 shadow">
         {renderedOptions}
       </div>
     </div>

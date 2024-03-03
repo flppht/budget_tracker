@@ -57,10 +57,10 @@ const Expense = () => {
               onClick={() =>
                 setListOfExpenses(sortData(listOfExpenses, sort, setSort))
               }
-              className="mr-1 text-cyan-600/80 cursor-pointer"
+              className="mr-1 text-cyan-600/80 cursor-pointer dark:text-slate-800"
             />
             <Link to="/createexpense">
-              <AddCircleOutlineIcon className="rounded-full text-cyan-600/80" />
+              <AddCircleOutlineIcon className="rounded-full text-cyan-600/80 dark:text-slate-800" />
             </Link>
           </div>
         </div>

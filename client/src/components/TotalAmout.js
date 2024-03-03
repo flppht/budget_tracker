@@ -71,7 +71,7 @@ const TotalAmount = () => {
               onClick={() =>
                 setTotalAmount(sortData(totalAmount, sort, setSort))
               }
-              className="text-cyan-600/80"
+              className="text-cyan-600/80 dark:text-slate-800"
             />
           </div>
         </div>

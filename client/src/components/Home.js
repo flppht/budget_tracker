@@ -5,7 +5,7 @@ import WalletIcon from "@mui/icons-material/Wallet";
 const HomePage = () => {
   return (
     <div className="flex flex-col md:flex-row md:space-x-5 mt-16 md:mt-40 items-center">
-      <div className="welcomePage items-left mb-5 md:mb-16 w-72 md:w-96 md:pr-8">
+      <div className="welcomePage items-left mb-5 md:mb-16 w-72 md:w-80 lg:w-96 md:pr-8">
         <div className="flex flex-row mb-4 items-center text-gray-800 ">
           <div>
             <WalletIcon sx={{ fontSize: 45 }} />
