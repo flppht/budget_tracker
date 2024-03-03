@@ -4,13 +4,18 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Notify from "./Notify";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import LightModeOutlinedIcon from "@mui/icons-material/LightMode";
+import DarkModeOutlinedIcon from "@mui/icons-material/DarkMode";
+import { darkTheme, lightTheme } from "../store";
 
 const Settings = () => {
   const auth = useSelector((state) => state.auth);
   const accessToken = useSelector((state) => state.accessToken.token);
   const [showNotify, setShowNotify] = useState(false);
   const [message, setMessage] = useState("");
+  const isLightTheme = useSelector((state) => state.theme.theme);
+  const dispatch = useDispatch();
 
   const initialValues = {
     oldPassword: "",
@@ -45,6 +50,14 @@ const Settings = () => {
       .required("You must enter the new password"),
   });
 
+  const handleClick = () => {
+    if (isLightTheme === "light") {
+      dispatch(darkTheme());
+    } else {
+      dispatch(lightTheme());
+    }
+  };
+
   return (
     <div className="mt-12">
       <Formik
@@ -53,8 +66,21 @@ const Settings = () => {
         validationSchema={validationSchema}
       >
         <Form className="formContainer w-72 md:w-96 shadow-md shadow-cyan-800/10 border-2 border-cyan-800/10">
-          <div className="text-xl font-semibold text-slate-800">
-            Username: {auth.username}
+          <div className="flex flex-row text-xl font-semibold text-slate-800 items-center">
+            <div className="w-full">Username: {auth.username}</div>
+            <div className="cursor-pointer pb-0.5" title="Toggle the theme">
+              {isLightTheme === "light" ? (
+                <LightModeOutlinedIcon
+                  sx={{ color: "#e8e231" }}
+                  onClick={handleClick}
+                />
+              ) : (
+                <DarkModeOutlinedIcon
+                  sx={{ color: "#737372" }}
+                  onClick={handleClick}
+                />
+              )}
+            </div>
           </div>
           <div className="flex flex-col mt-5 justify-center">
             <label className="font-semibold text-slate-800 mb-2">
@@ -78,7 +104,7 @@ const Settings = () => {
             />
             <Button
               type="submit"
-              className="bg-cyan-500 hover:bg-cyan-600/80 mt-5 px-4 w-fit md:w-1/2"
+              className="bg-cyan-500 dark:bg-cyan-600 hover:bg-cyan-600/80 mt-5 px-4 w-fit md:w-1/2"
             >
               Change password
             </Button>

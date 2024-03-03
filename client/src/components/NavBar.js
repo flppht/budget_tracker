@@ -20,8 +20,8 @@ function NavLinks() {
         onClick={() => setIsOpen(!isOpen)}
         className="profileButton w-16"
       >
-        <div className="flex flex-col items-center">
-          {<PermIdentityIcon />} <p className="text-sm text-balance">Profile</p>
+        <div className="flex flex-col items-center dark:text-white/80">
+          {<PermIdentityIcon />} <p className="text-sm">Profile</p>
         </div>
         {isOpen && <Profile setIsOpen={setIsOpen} btnEl={btnEl} />}
       </button>

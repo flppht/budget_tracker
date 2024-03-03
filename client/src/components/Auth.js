@@ -5,7 +5,7 @@ import * as Yup from "yup";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import Notify from "./Notify";
-import { login, setAccessToken } from "../store";
+import { lightTheme, login, setAccessToken } from "../store";
 import { useDispatch } from "react-redux";
 
 const Auth = () => {
@@ -34,6 +34,7 @@ const Auth = () => {
           setShowModal(true);
         } else {
           if (isLogin) {
+            dispatch(lightTheme());
             dispatch(setAccessToken(response.data.accessToken));
             dispatch(
               login({

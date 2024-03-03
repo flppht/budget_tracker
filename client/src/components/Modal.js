@@ -15,19 +15,24 @@ const Modal = ({ input, onClose, onSave }) => {
       pattern = /^[0-9]*\.?[0-9]+$/;
     } else if (input.field === "location") {
       pattern = /^.{3,25}$/;
-    } else {
-      return true;
+    } else if (input.field === "title") {
+      pattern = /\S+/;
     }
     return pattern.test(value);
   };
 
+  const invalidTitle = input.field === "title" && (
+    <p className="text-red-500 ml-2 md:ml-4 text-sm">
+      Input must have at least 1 character.
+    </p>
+  );
   const invalidValue = input.field === "value" && (
-    <p className="text-red-500 ml-4 text-sm">
+    <p className="text-red-500 ml-2 md:ml-4 text-sm">
       Must be a positive integer or decimal number.
     </p>
   );
   const invalidLocation = input.field === "location" && (
-    <p className="text-red-500 ml-4 text-sm">
+    <p className="text-red-500 ml-2 md:ml-4 text-sm">
       Input must be between 3 and 25 letters.
     </p>
   );
@@ -36,12 +41,12 @@ const Modal = ({ input, onClose, onSave }) => {
     <div>
       <div
         onClick={onClose}
-        className="fixed inset-0 bg-gray-300 opacity-80"
+        className="fixed inset-0 bg-gray-300 dark:bg-gray-500 opacity-80"
       ></div>
-      <div className="modalContainer fixed bg-slate-100 flex flex-col items-center">
+      <div className="modalContainer fixed bg-slate-100 dark:bg-gray-300 flex flex-col items-center">
         <div className="flex flex-col">
           <label className="font-semibold ml-2">Edit value:</label>
-          {!isInputValid() && (invalidValue || invalidLocation)}
+          {!isInputValid() && (invalidValue || invalidLocation || invalidTitle)}
           <input
             value={value}
             id="inputEditValue"

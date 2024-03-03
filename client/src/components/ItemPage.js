@@ -90,14 +90,14 @@ const ItemPage = ({ endpoint }) => {
       <div className="flex flex-row space-x-3 m-2 p-2">
         <Button
           type="button"
-          className="bg-cyan-500 shadow-cyan-600/50 hover:bg-cyan-600/90"
+          className="bg-cyan-500 dark:bg-cyan-600 shadow-cyan-600/50 hover:bg-cyan-600/90"
           onClick={handleUpdate}
         >
           Update
         </Button>
         <Button
           type="button"
-          className="bg-red-500 shadow-red-600/50 hover:bg-red-600/90"
+          className="bg-red-500 dark:bg-red-600 shadow-red-600/50 hover:bg-red-600/90"
           onClick={handleDelete}
         >
           Delete

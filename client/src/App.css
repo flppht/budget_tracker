@@ -2,13 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-    /* So 100% means 100% */
-    box-sizing: border-box;
-  }
 body {
     background-color: rgb(226 232 240);
+    color: rgb(30 41 59);
 }
+
+.dark body {
+ background-color:  rgba(71, 85, 105, 0.5 );
+}
+
 
 .App {
     height: 100%;
@@ -139,7 +141,6 @@ body {
     box-shadow: 0 0 0 2px rgba(134, 157, 173, 0.764);
 }
 
-
 .formContainer span {
     color: rgb(216, 23, 23);
     font-style: italic;
@@ -178,6 +179,16 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
+
+.modalContainer #inputEditValue:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(134, 157, 173, 0.764);
+}
+
+.dark .modalContainer #inputEditValue {
+    background-color: rgb(235, 237, 240);
+}
+
 
 #inputEditValue {
   height: 40px;
