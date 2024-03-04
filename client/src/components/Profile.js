@@ -62,7 +62,7 @@ const Profile = ({ btnEl, setIsOpen }) => {
 
   return (
     <div className="relative">
-      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-slate-100 dark:bg-slate-200 shadow">
+      <div className="absolute top-full text-sm text-gray-700 border rounded p-2 bg-slate-100 dark:bg-gray-200 shadow">
         {renderedOptions}
       </div>
     </div>
