@@ -18,6 +18,7 @@ import CreateItem from "./components/CreateItem";
 import Settings from "./components/Settings";
 import { useDispatch, useSelector } from "react-redux";
 import { login, logout, onRefresh } from "./store";
+import Footer from "./components/Footer";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -83,6 +84,7 @@ const App = () => {
             </>
           )}
         </Routes>
+        <Footer />
       </Router>
     </div>
   );

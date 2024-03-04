@@ -49,6 +49,7 @@ const CreateItem = ({ endpoint }) => {
             id="inputCreateItem"
             name="title"
             placeholder="Ex. Shopping..."
+            className="dark:bg-gray-100"
           />
           <label>Value:</label>
           <ErrorMessage name="value" component="span" />
@@ -56,6 +57,7 @@ const CreateItem = ({ endpoint }) => {
             id="inputCreateItem"
             name="value"
             placeholder="Ex. 149.99..."
+            className="dark:bg-gray-100"
           />
           <label>Location:</label>
           <ErrorMessage name="location" component="span" />
@@ -63,6 +65,7 @@ const CreateItem = ({ endpoint }) => {
             id="inputCreateItem"
             name="location"
             placeholder="Ex. Springfield..."
+            className="dark:bg-gray-100"
           />
 
           <Button

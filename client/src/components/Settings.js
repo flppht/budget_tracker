@@ -50,14 +50,6 @@ const Settings = () => {
       .required("You must enter the new password"),
   });
 
-  const handleClick = () => {
-    if (isLightTheme === "light") {
-      dispatch(darkTheme());
-    } else {
-      dispatch(lightTheme());
-    }
-  };
-
   return (
     <div className="mt-12">
       <Formik
@@ -72,12 +64,12 @@ const Settings = () => {
               {isLightTheme === "light" ? (
                 <LightModeOutlinedIcon
                   sx={{ color: "#e8e231" }}
-                  onClick={handleClick}
+                  onClick={() => dispatch(darkTheme())}
                 />
               ) : (
                 <DarkModeOutlinedIcon
                   sx={{ color: "#737372" }}
-                  onClick={handleClick}
+                  onClick={() => dispatch(lightTheme())}
                 />
               )}
             </div>
@@ -93,6 +85,7 @@ const Settings = () => {
               type="password"
               autoComplete="off"
               placeholder="Enter old password..."
+              className="dark:bg-gray-100"
             />
             <ErrorMessage name="newPassword" component="span" />
             <Field
@@ -101,6 +94,7 @@ const Settings = () => {
               type="password"
               autoComplete="off"
               placeholder="Enter new password..."
+              className="dark:bg-gray-100"
             />
             <Button
               type="submit"
