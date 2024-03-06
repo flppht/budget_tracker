@@ -6,7 +6,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import ImportExportIcon from "@mui/icons-material/ImportExport";
 import sortData from "../utility/SortData";
 import calculateTotalAmount from "../utility/CalculateTotalAmount";
-import Select from "./Select";
+import DatePicker from "./DatePicker";
 import { useSelector } from "react-redux";
 
 const Income = () => {
@@ -40,8 +40,8 @@ const Income = () => {
   return (
     <div>
       <div className="flex flex-col items-center mt-2">
-        <div className=" mb-4">
-          <Select
+        <div className="mb-4">
+          <DatePicker
             month={month}
             setMonth={setMonth}
             year={year}
