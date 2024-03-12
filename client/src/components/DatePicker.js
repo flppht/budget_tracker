@@ -3,27 +3,28 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import dayjs from "dayjs";
-import { ThemeProvider } from "@mui/material";
-import { lightMuiTheme, darkMuiTheme } from "../utility/MuiTheme";
-import { useSelector } from "react-redux";
 
-export default function DatePickerViews({ month, setMonth, year, setYear }) {
-  const theme = useSelector((state) => state.theme.theme);
+import { useDispatch, useSelector } from "react-redux";
+import { setDate } from "../store";
+
+export default function DatePickerViews() {
+  const date = useSelector((state) => state.date);
+  const dispatch = useDispatch();
+
   const handleChange = (value) => {
-    setMonth(dayjs(value.$d).month());
-    setYear(dayjs(value.$d).year());
+    dispatch(
+      setDate({ month: dayjs(value.$d).month(), year: dayjs(value.$d).year() })
+    );
   };
 
   return (
-    <ThemeProvider theme={theme === "light" ? lightMuiTheme : darkMuiTheme}>
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DatePicker
-          sx={{ width: "135px" }}
-          views={["month", "year"]}
-          defaultValue={dayjs(year + "-" + (parseInt(month, 10) + 1))}
-          onAccept={handleChange}
-        />
-      </LocalizationProvider>
-    </ThemeProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DatePicker
+        sx={{ width: "135px" }}
+        views={["month", "year"]}
+        defaultValue={dayjs(date.year + "-" + (parseInt(date.month, 10) + 1))}
+        onAccept={handleChange}
+      />
+    </LocalizationProvider>
   );
 }
