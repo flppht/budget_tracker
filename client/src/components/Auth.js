@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 const Auth = () => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
-  const [showModal, setShowModal] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ const Auth = () => {
       .then((response) => {
         if (response.data.error) {
           setMessage(response.data.error);
-          setShowModal(true);
+          setShowNotification(true);
         } else {
           if (isLogin) {
             dispatch(lightTheme());
@@ -45,7 +45,7 @@ const Auth = () => {
             navigate("/total");
           } else {
             setMessage(response.data);
-            setShowModal(true);
+            setShowNotification(true);
           }
         }
       });
@@ -63,7 +63,7 @@ const Auth = () => {
   });
 
   const handleClose = () => {
-    setShowModal(false);
+    setShowNotification(false);
   };
 
   return (
@@ -109,7 +109,7 @@ const Auth = () => {
           </div>
         </Form>
       </Formik>
-      {showModal && <Notify onClose={handleClose} message={message} />}
+      {showNotification && <Notify onClose={handleClose} message={message} />}
     </div>
   );
 };

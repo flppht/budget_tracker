@@ -12,12 +12,14 @@ import {
   onRefresh,
   removeTheme,
 } from "./slices/themeSlice";
+import { dateReducer, setDate } from "./slices/dateSlice";
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     accessToken: tokenReducer,
     theme: themeReducer,
+    date: dateReducer,
   },
 });
 
@@ -30,5 +32,6 @@ export {
   darkTheme,
   onRefresh,
   removeTheme,
+  setDate,
 };
 export { store };

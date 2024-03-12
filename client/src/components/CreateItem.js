@@ -72,7 +72,7 @@ const CreateItem = ({ endpoint }) => {
             type="submit"
             className="bg-cyan-500 dark:bg-cyan-600 shadow-cyan-500/50 hover:bg-cyan-600/90 mt-5"
           >
-            Create item
+            Create transaction
           </Button>
         </Form>
       </Formik>
