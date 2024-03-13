@@ -5,17 +5,26 @@ import * as Yup from "yup";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { RootState } from "../store";
+
+type CreateItemType = {
+  title: string;
+  value: number;
+  location?: string;
+};
 
 const CreateItem = ({ endpoint }) => {
   const navigate = useNavigate();
-  const accessToken = useSelector((state) => state.accessToken.token);
+  const accessToken = useSelector(
+    (state: RootState) => state.accessToken.token
+  );
   const initialValues = {
     title: "",
     value: null,
     location: "",
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: CreateItemType) => {
     axios
       .post(`${process.env.REACT_APP_SERVER_URL}/${endpoint}`, data, {
         headers: {
@@ -29,8 +38,9 @@ const CreateItem = ({ endpoint }) => {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required("You must input a title"),
-    value: Yup.number("You can use only positive numbers and '.'")
+    value: Yup.number()
       .positive("You must input a number larger than 0")
+      .typeError("You can use only positive numbers and '.'")
       .required("You must input a value"),
     location: Yup.string().min(3).max(25),
   });

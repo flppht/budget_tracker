@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
       Users.create({ username, password: hash });
     });
 
-    res.json("User successfully created!");
+    res.json({ info: "User successfully created!" });
   }
 });
 

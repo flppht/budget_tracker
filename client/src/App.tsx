@@ -17,16 +17,18 @@ import ItemPage from "./components/ItemPage";
 import CreateItem from "./components/CreateItem";
 import Settings from "./components/Settings";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout, onRefresh } from "./store";
+import { RootState, login, logout, onRefresh } from "./store";
 import Footer from "./components/Footer";
 import { ThemeProvider } from "@mui/material";
 import { lightMuiTheme, darkMuiTheme } from "./utility/MuiTheme";
 
 const App = () => {
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth);
-  const accessToken = useSelector((state) => state.accessToken.token);
-  const theme = useSelector((state) => state.theme.theme);
+  const auth = useSelector((state: RootState) => state.auth);
+  const accessToken = useSelector(
+    (state: RootState) => state.accessToken.token
+  );
+  const theme = useSelector((state: RootState) => state.theme.theme);
 
   useEffect(() => {
     dispatch(onRefresh());

@@ -1,14 +1,15 @@
-import * as React from "react";
 import Snackbar from "@mui/material/Snackbar";
 import Fade from "@mui/material/Fade";
 
-const Notify = ({ onClose, message }) => {
+type NotifyProps = { onClose: () => void; message: string };
+
+const Notify = ({ onClose, message }: NotifyProps) => {
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
 
-    onClose(false);
+    onClose();
   };
 
   return (

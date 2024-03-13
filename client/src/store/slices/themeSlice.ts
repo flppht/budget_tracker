@@ -24,7 +24,7 @@ const themeSlice = createSlice({
     },
     removeTheme(state) {
       state.theme = "";
-      localStorage.removeItem("theme", "light");
+      localStorage.removeItem("theme");
       document.documentElement.classList.remove("dark");
     },
   },
