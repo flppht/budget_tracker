@@ -2,7 +2,17 @@ import { useState } from "react";
 import ReactDOM from "react-dom";
 import Button from "./Button";
 
-const Modal = ({ input, onClose, onSave }) => {
+type InputProps = {
+  field: string;
+  value: number | string;
+};
+type ModalProps = {
+  input: InputProps;
+  onClose: () => void;
+  onSave: (modalInput: InputProps) => void;
+};
+
+const Modal = ({ input, onClose, onSave }: ModalProps) => {
   const [value, setValue] = useState(input.value);
 
   const handleSave = () => {

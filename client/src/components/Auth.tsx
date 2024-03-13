@@ -8,6 +8,16 @@ import Notify from "./Notify";
 import { lightTheme, login, setAccessToken } from "../store";
 import { useDispatch } from "react-redux";
 
+type ResponseType = {
+  data: {
+    accessToken?: string;
+    id?: number;
+    username?: string;
+    error?: string;
+    info?: string;
+  };
+};
+
 const Auth = () => {
   const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(true);
@@ -20,7 +30,7 @@ const Auth = () => {
     password: "",
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: { username: string; password: string }) => {
     axios
       .post(
         `${process.env.REACT_APP_SERVER_URL}/auth/${
@@ -28,7 +38,7 @@ const Auth = () => {
         }`,
         data
       )
-      .then((response) => {
+      .then((response: ResponseType) => {
         if (response.data.error) {
           setMessage(response.data.error);
           setShowNotification(true);
@@ -44,7 +54,7 @@ const Auth = () => {
             );
             navigate("/total");
           } else {
-            setMessage(response.data);
+            setMessage(response.data.info);
             setShowNotification(true);
           }
         }

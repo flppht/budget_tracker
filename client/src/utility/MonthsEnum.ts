@@ -11,7 +11,7 @@ const MonthsEnum = Object.freeze({
   Oct: 9,
   Nov: 10,
   Dec: 11,
-  getMonthName: function (monthNumber) {
+  getMonthName: function (monthNumber: number) {
     for (const monthName in this) {
       if (this.hasOwnProperty(monthName) && this[monthName] === monthNumber) {
         return monthName;

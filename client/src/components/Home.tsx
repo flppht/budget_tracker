@@ -1,5 +1,4 @@
 import Auth from "./Auth";
-
 import WalletIcon from "@mui/icons-material/Wallet";
 
 const HomePage = () => {

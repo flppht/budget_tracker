@@ -4,12 +4,17 @@ import { useNavigate, useParams } from "react-router-dom";
 import dateExtractor from "../utility/DateExtractor";
 import Button from "./Button";
 import Modal from "./Modal";
+import { TransactionType } from "../hooks/useTransactions";
 
-const ItemPage = ({ endpoint }) => {
-  const [item, setItem] = useState({});
+const ItemPage = ({ endpoint }: { endpoint: string }) => {
+  const [item, setItem] = useState<TransactionType>({
+    title: "",
+    value: 0,
+    createdAt: "",
+  });
   let { id } = useParams();
   const [showModal, setShowModal] = useState(false);
-  const [modalInput, setModalInput] = useState({ field: "", value: "" });
+  const [modalInput, setModalInput] = useState({ field: "", value: null });
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +43,7 @@ const ItemPage = ({ endpoint }) => {
       });
   };
 
-  const handleClick = (field, value) => {
+  const handleClick = (field: string, value: string | number) => {
     setShowModal(true);
     setModalInput({ field, value });
   };
@@ -53,7 +58,7 @@ const ItemPage = ({ endpoint }) => {
     } else if (field === "location") {
       setItem({ ...item, location: value });
     } else {
-      setItem({ ...item, value: value });
+      setItem({ ...item, value: parseFloat(value) });
     }
     setShowModal(false);
   };

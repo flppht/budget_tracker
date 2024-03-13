@@ -5,7 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout, removeAccessToken, removeTheme } from "../store";
 
-const Profile = ({ btnEl, setIsOpen }) => {
+type ProfileProps = {
+  btnEl: React.RefObject<HTMLButtonElement>,
+  setIsOpen: (value: boolean) => void,
+}
+
+const Profile = ({ btnEl, setIsOpen }: ProfileProps) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

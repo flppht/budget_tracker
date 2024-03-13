@@ -8,13 +8,21 @@ import { useDispatch, useSelector } from "react-redux";
 import LightModeOutlinedIcon from "@mui/icons-material/LightMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkMode";
 import { darkTheme, lightTheme } from "../store";
+import { RootState } from "../store";
+
+type DataType = {
+  oldPassword: string;
+  newPassword: string;
+};
 
 const Settings = () => {
-  const auth = useSelector((state) => state.auth);
-  const accessToken = useSelector((state) => state.accessToken.token);
+  const auth = useSelector((state: RootState) => state.auth);
+  const accessToken = useSelector(
+    (state: RootState) => state.accessToken.token
+  );
   const [showNotify, setShowNotify] = useState(false);
   const [message, setMessage] = useState("");
-  const isLightTheme = useSelector((state) => state.theme.theme);
+  const isLightTheme = useSelector((state: RootState) => state.theme.theme);
   const dispatch = useDispatch();
 
   const initialValues = {
@@ -22,7 +30,7 @@ const Settings = () => {
     newPassword: "",
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: DataType) => {
     axios
       .put(`${process.env.REACT_APP_SERVER_URL}/auth/changepassword`, data, {
         headers: {

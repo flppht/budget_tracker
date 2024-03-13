@@ -8,7 +8,7 @@ import Profile from "./Profile";
 
 function NavLinks() {
   const [isOpen, setIsOpen] = useState(false);
-  const btnEl = useRef();
+  const btnEl = useRef<HTMLButtonElement>(null);
 
   return (
     <>
