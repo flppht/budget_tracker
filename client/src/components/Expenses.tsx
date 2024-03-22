@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dateExtractor from "../utility/DateExtractor";
 import { Link, useNavigate } from "react-router-dom";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -25,7 +25,7 @@ const Expense = () => {
   }
 
   return (
-    <div>
+    <div data-testid="expenses">
       <div className="flex flex-col items-center mt-2">
         <div className="mb-4">
           <DatePicker />

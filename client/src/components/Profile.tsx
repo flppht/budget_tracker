@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import SettingsIcon from "@mui/icons-material/Settings";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useNavigate } from "react-router-dom";
@@ -6,9 +6,9 @@ import { useDispatch } from "react-redux";
 import { logout, removeAccessToken, removeTheme } from "../store";
 
 type ProfileProps = {
-  btnEl: React.RefObject<HTMLButtonElement>,
-  setIsOpen: (value: boolean) => void,
-}
+  btnEl: React.RefObject<HTMLButtonElement>;
+  setIsOpen: (value: boolean) => void;
+};
 
 const Profile = ({ btnEl, setIsOpen }: ProfileProps) => {
   const dispatch = useDispatch();
