@@ -1,0 +1,177 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot 1`] = `
+<div
+  data-testid="expenses"
+>
+  <div
+    className="flex flex-col items-center mt-2"
+  >
+    <div
+      className="mb-4"
+    >
+      <div
+        className="MuiFormControl-root MuiTextField-root css-1nrosik-MuiFormControl-root-MuiTextField-root"
+        onClick={[Function]}
+        onMouseUp={[Function]}
+      >
+        <div
+          className="MuiInputBase-root MuiOutlinedInput-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root"
+          onClick={[Function]}
+        >
+          <input
+            aria-invalid={false}
+            autoComplete="off"
+            autoFocus={false}
+            className="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedEnd css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+            disabled={false}
+            id=":r0:"
+            inputMode="text"
+            onAnimationStart={[Function]}
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onPaste={[Function]}
+            placeholder="MMMM YYYY"
+            readOnly={false}
+            required={false}
+            type="text"
+            value="March 2024"
+          />
+          <div
+            className="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-outlined MuiInputAdornment-sizeMedium css-1laqsz7-MuiInputAdornment-root"
+          >
+            <button
+              aria-label="Choose date, selected date is Mar 1, 2024"
+              className="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+              disabled={false}
+              onBlur={[Function]}
+              onClick={[Function]}
+              onContextMenu={[Function]}
+              onDragLeave={[Function]}
+              onFocus={[Function]}
+              onKeyDown={[Function]}
+              onKeyUp={[Function]}
+              onMouseDown={[Function]}
+              onMouseLeave={[Function]}
+              onMouseUp={[Function]}
+              onTouchEnd={[Function]}
+              onTouchMove={[Function]}
+              onTouchStart={[Function]}
+              tabIndex={0}
+              type="button"
+            >
+              <svg
+                aria-hidden={true}
+                className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="CalendarIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-1V1h-2zm3 18H5V8h14v11z"
+                />
+              </svg>
+            </button>
+          </div>
+          <fieldset
+            aria-hidden={true}
+            className="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+          >
+            <legend
+              className="css-ihdtdm"
+            >
+              <span
+                className="notranslate"
+              >
+                ​
+              </span>
+            </legend>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+    <div
+      className="flex flex-row w-72"
+    >
+      <label
+        className="text-lg mb-2 font-semibold w-full"
+      >
+        Expenses: 
+        -10.00
+         KM
+      </label>
+      <div
+        className="w-16"
+      >
+        <svg
+          aria-hidden={true}
+          className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium mr-1 text-cyan-600/80 cursor-pointer dark:text-slate-800 css-i4bv87-MuiSvgIcon-root"
+          data-testid="ImportExportIcon"
+          focusable="false"
+          onClick={[Function]}
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M9 3 5 6.99h3V14h2V6.99h3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99z"
+          />
+        </svg>
+        <a
+          href="/createexpense"
+          onClick={[Function]}
+        >
+          <svg
+            aria-hidden={true}
+            className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium rounded-full text-cyan-600/80 dark:text-slate-800 css-i4bv87-MuiSvgIcon-root"
+            data-testid="AddCircleOutlineIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8"
+            />
+          </svg>
+        </a>
+      </div>
+    </div>
+    <div
+      className="container flex flex-col overflow-auto"
+    >
+      <div
+        className="itemContainer shadow-md"
+      >
+        <div
+          className="item flex justify-center"
+          onClick={[Function]}
+        >
+          <div
+            className="titleContainer w-3/5"
+          >
+            <div
+              className="itemDate text-sm font-normal text-gray-500"
+            >
+              21 Mar, 2024
+            </div>
+            <div
+              className="font-mono mt-1 font-semibold"
+            >
+              coffee
+            </div>
+            <div
+              className="itemLocation text-sm font-normal text-gray-500 italic"
+            />
+          </div>
+          <div
+            className="itemValue w-2/5 font-semibold align-bottom text-red-700"
+          >
+            -
+            10
+             KM
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

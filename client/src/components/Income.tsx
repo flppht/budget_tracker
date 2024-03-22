@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dateExtractor from "../utility/DateExtractor";
 import { Link, useNavigate } from "react-router-dom";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
