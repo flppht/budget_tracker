@@ -1,4 +1,3 @@
-import React from "react";
 import HealingIcon from "@mui/icons-material/Healing";
 
 const PageNotFound = () => {

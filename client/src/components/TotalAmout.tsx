@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dateExtractor from "../utility/DateExtractor";
 import { useNavigate } from "react-router-dom";
 import ImportExportIcon from "@mui/icons-material/ImportExport";
@@ -10,7 +10,7 @@ import { useTransactions } from "../hooks/useTransactions";
 import Notify from "./Notify";
 
 const TotalAmount = () => {
-  const { combined, setCombined, isLoading, error } = useTransactions();
+  const { combined, setCombined, isLoading, error } = useTransactions("total");
   const [sort, setSort] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
   const navigate = useNavigate();

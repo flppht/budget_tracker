@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import dateExtractor from "../utility/DateExtractor";
 import { Link, useNavigate } from "react-router-dom";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
@@ -11,7 +11,8 @@ import { useTransactions } from "../hooks/useTransactions";
 import Notify from "./Notify";
 
 const Expense = () => {
-  const { expenses, setExpenses, isLoading, error } = useTransactions();
+  const { expenses, setExpenses, isLoading, error } =
+    useTransactions("expenses");
   const [sort, setSort] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Expense = () => {
   }
 
   return (
-    <div>
+    <div data-testid="expenses">
       <div className="flex flex-col items-center mt-2">
         <div className="mb-4">
           <DatePicker />

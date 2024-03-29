@@ -1,8 +1,7 @@
-import React, { ReactElement } from "react";
 const classnames = require("classnames");
 
 type ButtonProps = {
-  className: string;
+  className?: string;
   type: "submit" | "reset" | "button";
   children: React.ReactNode;
   onClick?: () => void;
@@ -16,7 +15,7 @@ const Button = ({ className, type, children, ...rest }: ButtonProps) => {
   );
 
   return (
-    <button type={type} className={classString} {...rest}>
+    <button type={type} className={classString} {...rest} data-testid="button">
       {children}
     </button>
   );

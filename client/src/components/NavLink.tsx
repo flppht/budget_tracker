@@ -1,11 +1,10 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 type NavLinkProps = {
-  path: string,
-  icon: React.JSX.Element,
-  text: string,
-}
+  path: string;
+  icon: React.JSX.Element;
+  text: string;
+};
 
 function NavLink({ path, icon, text }: NavLinkProps) {
   return (
