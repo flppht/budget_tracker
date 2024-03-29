@@ -1,21 +1,21 @@
 const config = {
   //for using docker, hostname should be postgres as it's a service
-  // development: {
-  //   username: process.env.DB_USERNAME,
-  //   password: process.env.DB_PASSWORD,
-  //   database: "budgettracker_dev",
-  //   host: "postgres",
-  //   dialect: "postgres",
-  // },
-
-  //on local using mysql
   development: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
-    database: "budgettracker",
-    host: "127.0.0.1",
-    dialect: "mysql",
+    database: "budgettracker_dev",
+    host: "postgres",
+    dialect: "postgres",
   },
+
+  //on local using mysql
+  // development: {
+  //   username: process.env.DB_USERNAME,
+  //   password: process.env.DB_PASSWORD,
+  //   database: "budgettracker",
+  //   host: "127.0.0.1",
+  //   dialect: "mysql",
+  // },
   test: {
     username: "postgres",
     password: null,
