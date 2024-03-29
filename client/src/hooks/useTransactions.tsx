@@ -12,7 +12,7 @@ export interface TransactionType {
   createdAt: string | number | Date;
 }
 
-export const useTransactions = () => {
+export const useTransactions = (endpoint: string) => {
   const [income, setIncome] = useState<TransactionType[]>([]);
   const [expenses, setExpenses] = useState<TransactionType[]>([]);
   const [combined, setCombined] = useState<TransactionType[]>([]);
@@ -29,37 +29,46 @@ export const useTransactions = () => {
     );
   };
 
+  const fetchIncome = async () => {
+    return await axios
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/income?month=${month}&year=${year}`,
+        {
+          headers: { accessToken },
+        }
+      )
+      .then((response: { data: TransactionType[] }) => {
+        return response.data;
+      });
+  };
+
+  const fetchExpenses = async () => {
+    return await axios
+      .get(
+        `${process.env.REACT_APP_SERVER_URL}/expenses?month=${month}&year=${year}`,
+        {
+          headers: { accessToken },
+        }
+      )
+      .then((response: { data: TransactionType[] }) => {
+        return response.data;
+      });
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const properties = {
-          month,
-          year,
-        };
-
-        const expenses = await axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/expenses`, {
-            headers: { accessToken },
-            params: properties,
-          })
-          .then((response: { data: TransactionType[] }) => {
-            return response.data;
-          });
-
-        const income = await axios
-          .get(`${process.env.REACT_APP_SERVER_URL}/income`, {
-            headers: { accessToken },
-            params: properties,
-          })
-          .then((response: { data: TransactionType[] }) => {
-            return response.data;
-          });
-
-        const combined = [...income, ...expenses];
-
-        setIncome(sort(income));
-        setExpenses(sort(expenses));
-        setCombined(sort(combined));
+        if (endpoint === "income") {
+          setIncome(sort(await fetchIncome()));
+        } else if (endpoint === "expenses") {
+          setExpenses(sort(await fetchExpenses()));
+        } else {
+          const combined = [
+            ...(await fetchIncome()),
+            ...(await fetchExpenses()),
+          ];
+          setCombined(sort(combined));
+        }
         setIsLoading(false);
       } catch (error) {
         setError(error.message);

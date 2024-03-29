@@ -11,7 +11,7 @@ import { useTransactions } from "../hooks/useTransactions";
 import Notify from "./Notify";
 
 const Income = () => {
-  const { income, setIncome, isLoading, error } = useTransactions();
+  const { income, setIncome, isLoading, error } = useTransactions("income");
   const [sort, setSort] = useState(false);
   const [showNotification, setShowNotification] = useState(true);
   const navigate = useNavigate();
